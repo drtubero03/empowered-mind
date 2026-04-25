@@ -159,6 +159,73 @@ section.compact { padding: 4rem 0; }
 .bg-foam {
   background: linear-gradient(180deg, var(--foam) 0%, var(--bg) 100%);
 }
+.bg-sand {
+  background: linear-gradient(180deg, #E8D8C5 0%, var(--bg) 100%);
+}
+.bg-tide {
+  background:
+    radial-gradient(ellipse at 50% 0%, var(--sky-pink) 0%, transparent 55%),
+    radial-gradient(ellipse at 50% 100%, var(--teal-light) 0%, transparent 55%),
+    var(--foam);
+}
+.bg-mist {
+  background:
+    radial-gradient(ellipse at 50% 0%, var(--teal-light) 0%, transparent 55%),
+    var(--bg);
+}
+
+/* Ocean variant: very faint horizontal ripple band behind every neutral section */
+section.bg-linen,
+section.bg-soft,
+section.bg-foam,
+section.bg-sand,
+section.bg-tide,
+section.bg-mist {
+  position: relative;
+}
+section.bg-linen::after,
+section.bg-soft::after,
+section.bg-foam::after,
+section.bg-sand::after,
+section.bg-tide::after,
+section.bg-mist::after {
+  content: '';
+  position: absolute; inset: 0; pointer-events: none;
+  background-image: repeating-linear-gradient(
+    180deg,
+    transparent 0px,
+    transparent 96px,
+    rgba(72,126,126,0.045) 96px,
+    rgba(72,126,126,0.045) 98px
+  );
+  z-index: 0;
+}
+section > * { position: relative; z-index: 1; }
+
+/* SVG wave dividers — placed as <div class="wave-sep"> between sections */
+.wave-sep {
+  position: relative;
+  height: 70px;
+  margin-top: -1px; margin-bottom: -1px;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 2;
+}
+.wave-sep svg {
+  position: absolute; top: 0; left: 0;
+  width: 100%; height: 100%;
+}
+.wave-sep.flip svg { transform: scaleY(-1); }
+
+/* Tide-glyph: tiny three-wave accent under section headlines */
+.tide-glyph {
+  display: block;
+  width: 64px; height: 12px;
+  margin: 0.5rem auto 1.25rem;
+  opacity: 0.65;
+}
+.tide-glyph svg { width: 100%; height: 100%; }
+.tide-glyph svg path { stroke: var(--teal); fill: none; stroke-width: 2; stroke-linecap: round; }
 
 .bg-teal {
   background: linear-gradient(135deg, var(--teal) 0%, var(--teal-deep) 100%);
