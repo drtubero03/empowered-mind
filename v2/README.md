@@ -4,22 +4,6 @@ Static marketing site for Dr. Adrian Tubero, Psy.D. — Core Self Reclamation Th
 
 **Live (GitHub Pages):** https://zelidav.github.io/empowered-mind/
 
-## Design comparison
-
-Two design directions are deployed side-by-side. The compare page lets you toggle between them and switch pages without leaving:
-
-> **Compare:** https://zelidav.github.io/empowered-mind/compare.html
-
-| Variant | Direction | Branch | Direct preview |
-|---|---|---|---|
-| **V1** | Periwink lavender + Empowered Mind sage/pink lotus, botanical leaves & petals | [`v1-periwink-botanical`](https://github.com/zelidav/empowered-mind/tree/v1-periwink-botanical) | [`/v1/`](https://zelidav.github.io/empowered-mind/v1/) |
-| **V2** | Ocean — sunset/teal palette, looping wave video hero, animated SVG waves + drifting foam | [`v2-ocean`](https://github.com/zelidav/empowered-mind/tree/v2-ocean) | [`/v2/`](https://zelidav.github.io/empowered-mind/v2/) |
-
-`main` is the original sage/teal version (untouched baseline). The two variants live as branches and are also copied into `v1/` and `v2/` subdirectories on `main` so they can be served from the same Pages site (which lets the compare page iframe them — same-origin).
-
-When you pick a winner, merge that branch into `main` and delete the `v1/` and `v2/` subdirs.
-
-
 > Custom domain `doctor.tubero.com` is planned but not yet wired — `tubero.com` is not currently on the user's registrar account. When it is, drop a `CNAME` file in repo root containing `doctor.tubero.com` and add a CNAME record `doctor → zelidav.github.io` in DNS.
 
 ## Stack

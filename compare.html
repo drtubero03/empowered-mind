@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Empowered Mind — Design Comparison</title>
+  <style>
+    :root {
+      --bg: #1a1a1a;
+      --panel: #232323;
+      --line: #2e2e2e;
+      --text: #f4f1ec;
+      --muted: #9b9994;
+      --accent-1: #8FAF9B;
+      --accent-2: #6C9090;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      display: flex; flex-direction: column;
+      overflow: hidden;
+    }
+    header {
+      flex-shrink: 0;
+      padding: 0.65rem 1rem;
+      background: var(--panel);
+      border-bottom: 1px solid var(--line);
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 1rem; flex-wrap: wrap;
+    }
+    h1 { font-family: "Cormorant Garamond", Georgia, serif; font-size: 1.1rem; font-weight: 500; }
+    .toolbar { display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; font-size: 0.82rem; }
+    .toolbar button {
+      background: transparent;
+      border: 1px solid #3a3a3a;
+      color: var(--text);
+      padding: 0.4rem 0.8rem;
+      border-radius: 5px;
+      cursor: pointer;
+      font: inherit; font-size: 0.82rem;
+      transition: background .2s, border-color .2s;
+    }
+    .toolbar button:hover { background: #2c2c2c; border-color: #555; }
+    .toolbar button.active { background: var(--accent-2); border-color: var(--accent-2); color: white; }
+    .toolbar .seg { display: inline-flex; gap: 0; border: 1px solid #3a3a3a; border-radius: 5px; overflow: hidden; }
+    .toolbar .seg button { border: none; border-radius: 0; padding: 0.4rem 0.7rem; }
+    .toolbar .seg button + button { border-left: 1px solid #3a3a3a; }
+    .toolbar select {
+      background: #2a2a2a; color: var(--text); border: 1px solid #3a3a3a;
+      padding: 0.4rem 0.6rem; border-radius: 5px; font: inherit; font-size: 0.82rem;
+    }
+    .stage {
+      flex: 1; min-height: 0;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+    .stage.single { grid-template-columns: 1fr; }
+    .stage.single .panel.hidden { display: none; }
+    .panel {
+      background: black; position: relative; min-height: 0;
+      display: flex; flex-direction: column;
+      border-left: 1px solid var(--line);
+    }
+    .panel:first-child { border-left: 0; }
+    .label {
+      position: absolute; top: 10px; left: 12px; z-index: 5;
+      background: rgba(0,0,0,0.65); color: white;
+      padding: 4px 10px; border-radius: 999px;
+      font-size: 0.74rem; letter-spacing: 0.06em;
+      backdrop-filter: blur(8px);
+    }
+    .label.v1 { background: linear-gradient(135deg, rgba(120,144,96,0.92), rgba(216,168,168,0.85)); }
+    .label.v2 { background: linear-gradient(135deg, rgba(72,126,126,0.92), rgba(176,196,216,0.85)); }
+    iframe {
+      flex: 1; width: 100%; border: 0; background: white;
+    }
+    .open-link {
+      position: absolute; top: 10px; right: 12px; z-index: 5;
+      background: rgba(0,0,0,0.55); color: white;
+      padding: 4px 10px; border-radius: 999px;
+      font-size: 0.74rem; text-decoration: none;
+      backdrop-filter: blur(8px);
+    }
+    .open-link:hover { background: rgba(0,0,0,0.85); }
+    @media (max-width: 800px) {
+      .stage { grid-template-columns: 1fr; grid-template-rows: 1fr 1fr; }
+      .panel { border-left: 0; border-top: 1px solid var(--line); }
+      .panel:first-child { border-top: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Empowered Mind — design comparison</h1>
+  <div class="toolbar">
+    <span style="color:var(--muted);">View:</span>
+    <div class="seg" id="viewSeg">
+      <button data-mode="both" class="active">Both</button>
+      <button data-mode="v1">V1 only</button>
+      <button data-mode="v2">V2 only</button>
+    </div>
+    <span style="color:var(--muted);">Page:</span>
+    <select id="pageSel">
+      <option value="index.html">Home</option>
+      <option value="about.html">About</option>
+      <option value="csrt-package.html">CSRT Package</option>
+      <option value="apply.html">Apply</option>
+    </select>
+  </div>
+</header>
+
+<div class="stage" id="stage">
+  <div class="panel" data-which="v1">
+    <span class="label v1">V1 · Periwink + Botanical</span>
+    <a class="open-link" href="v1/index.html" target="_blank" rel="noopener">Open ↗</a>
+    <iframe id="iframeV1" src="v1/index.html" title="V1 — periwink botanical" loading="lazy"></iframe>
+  </div>
+  <div class="panel" data-which="v2">
+    <span class="label v2">V2 · Ocean</span>
+    <a class="open-link" href="v2/index.html" target="_blank" rel="noopener">Open ↗</a>
+    <iframe id="iframeV2" src="v2/index.html" title="V2 — ocean" loading="lazy"></iframe>
+  </div>
+</div>
+
+<script>
+  const stage = document.getElementById('stage');
+  const seg = document.getElementById('viewSeg');
+  const sel = document.getElementById('pageSel');
+  const iframeV1 = document.getElementById('iframeV1');
+  const iframeV2 = document.getElementById('iframeV2');
+  const linkV1 = document.querySelector('[data-which=v1] .open-link');
+  const linkV2 = document.querySelector('[data-which=v2] .open-link');
+
+  seg.addEventListener('click', (e) => {
+    const btn = e.target.closest('button');
+    if (!btn) return;
+    seg.querySelectorAll('button').forEach((b) => b.classList.remove('active'));
+    btn.classList.add('active');
+    const mode = btn.dataset.mode;
+    stage.classList.toggle('single', mode !== 'both');
+    document.querySelector('[data-which=v1]').classList.toggle('hidden', mode === 'v2');
+    document.querySelector('[data-which=v2]').classList.toggle('hidden', mode === 'v1');
+  });
+
+  sel.addEventListener('change', () => {
+    const page = sel.value;
+    iframeV1.src = `v1/${page}`;
+    iframeV2.src = `v2/${page}`;
+    linkV1.href = `v1/${page}`;
+    linkV2.href = `v2/${page}`;
+  });
+</script>
+
+</body>
+</html>
