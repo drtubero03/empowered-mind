@@ -4,20 +4,36 @@
    ============================================================ */
 
 :root {
-  --bg:         #F8F5F0;
-  --bg-soft:    #F0EDE8;
-  --sage:       #8FAF9B;
-  --sage-soft:  #DFE8E2;
-  --teal:       #6B9E9A;
-  --teal-deep:  #4F7D7A;
-  --slate:      #7A8FAF;
-  --mauve:      #C4978A;
-  --mauve-soft: #EFDFD9;
-  --deep:       #2C2C2C;
-  --light-text: #5A5A5A;
-  --muted:      #8A8580;
-  --white:      #FFFFFF;
-  --border:     #E5E0D9;
+  /* ── Periwink + Empowered Mind botanical palette
+        Sampled from the lotus logo (sage leaves + dusty pink center)
+        and woven with the Periwink lavender family. ── */
+  --bg:           #F8F5EE;     /* warm linen */
+  --bg-soft:      #EFEAE0;
+  --bg-warm:      #F4ECE5;     /* faint blush wash */
+
+  --sage:         #789060;     /* lotus leaves — primary green */
+  --sage-soft:    #C7D5B5;
+  --sage-deep:    #4E6B3C;
+
+  --lotus:        #D8A8A8;     /* lotus petal — primary pink */
+  --lotus-soft:   #F2DEDE;
+  --lotus-deep:   #B47878;
+
+  --periwink:     #B8C4E3;     /* periwink lavender */
+  --periwink-soft:#E2E7F2;
+  --periwink-deep:#7E8FBD;
+
+  --teal:         #6B9E9A;     /* kept for accent gradients */
+  --teal-deep:    #4F7D7A;
+  --slate:        #7A8FAF;
+  --mauve:        #C4978A;
+  --mauve-soft:   #EFDFD9;
+
+  --deep:         #2C2C2C;
+  --light-text:   #5A5A5A;
+  --muted:        #8A8580;
+  --white:        #FFFFFF;
+  --border:       #E5DED2;
 
   --serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
   --sans:  'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
@@ -50,7 +66,7 @@ body {
 img, svg, video { display: block; max-width: 100%; }
 
 a { color: inherit; text-decoration: none; transition: color .25s var(--ease); }
-a:hover { color: var(--teal-deep); }
+a:hover { color: var(--sage-deep); }
 
 button { font-family: inherit; cursor: pointer; border: none; background: none; }
 
@@ -78,7 +94,7 @@ p + p { margin-top: 1rem; }
   font-weight: 500;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--teal-deep);
+  color: var(--sage-deep);
   margin-bottom: 1rem;
 }
 
@@ -115,7 +131,7 @@ section.compact { padding: 4rem 0; }
 
 .divider-line {
   width: 48px; height: 2px; margin: 1rem 0 2rem;
-  background: linear-gradient(90deg, var(--sage), var(--teal));
+  background: linear-gradient(90deg, var(--sage), var(--lotus));
   border-radius: 2px;
 }
 
@@ -139,14 +155,21 @@ section.compact { padding: 4rem 0; }
 .bg-sage {
   background: linear-gradient(180deg, var(--sage-soft) 0%, var(--bg) 100%);
 }
+.bg-periwink {
+  background: linear-gradient(180deg, var(--periwink-soft) 0%, var(--bg) 100%);
+}
+.bg-lotus {
+  background: linear-gradient(180deg, var(--lotus-soft) 0%, var(--bg-warm) 100%);
+}
 
+/* Garden band — deep botanical green */
 .bg-teal {
-  background: linear-gradient(135deg, var(--teal) 0%, var(--teal-deep) 100%);
+  background: linear-gradient(135deg, var(--sage-deep) 0%, #3D5530 100%);
   color: var(--white);
 }
 .bg-teal h1, .bg-teal h2, .bg-teal h3, .bg-teal h4 { color: var(--white); }
 .bg-teal p { color: rgba(255,255,255,0.88); }
-.bg-teal .eyebrow { color: var(--sage-soft); }
+.bg-teal .eyebrow { color: var(--lotus-soft); }
 
 .bg-dark {
   background: var(--deep);
@@ -154,7 +177,7 @@ section.compact { padding: 4rem 0; }
 }
 .bg-dark h1, .bg-dark h2, .bg-dark h3, .bg-dark h4 { color: var(--white); }
 .bg-dark p { color: rgba(255,255,255,0.78); }
-.bg-dark .eyebrow { color: var(--mauve); }
+.bg-dark .eyebrow { color: var(--lotus); }
 
 /* ---------- Buttons ---------- */
 
@@ -180,10 +203,10 @@ section.compact { padding: 4rem 0; }
   color: var(--white);
 }
 .btn-primary:hover {
-  background: var(--teal);
+  background: var(--sage-deep);
   color: var(--white);
   transform: translateY(-2px);
-  box-shadow: 0 12px 28px rgba(107,158,154,0.25);
+  box-shadow: 0 12px 28px rgba(120,144,96,0.30);
 }
 
 .btn-outline {
@@ -211,11 +234,11 @@ section.compact { padding: 4rem 0; }
 
 .btn-ghost {
   padding: 0.5rem 0;
-  color: var(--teal-deep);
+  color: var(--sage-deep);
   font-weight: 500;
   font-size: 0.95rem;
 }
-.btn-ghost:hover { color: var(--deep); }
+.btn-ghost:hover { color: var(--lotus-deep); }
 .btn-ghost svg { width: 14px; height: 14px; transition: transform .25s var(--ease); }
 .btn-ghost:hover svg { transform: translateX(4px); }
 
@@ -230,7 +253,7 @@ section.compact { padding: 4rem 0; }
   border-bottom: 1px solid transparent;
 }
 .nav.scrolled {
-  background: rgba(248,245,240,0.85);
+  background: rgba(248,245,238,0.88);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
   padding: 0.6rem 0;
@@ -253,7 +276,8 @@ section.compact { padding: 4rem 0; }
   gap: 0.65rem;
 }
 .nav-logo .logo-mark {
-  width: 28px; height: 28px; flex-shrink: 0;
+  width: 32px; height: 32px; flex-shrink: 0;
+  object-fit: contain;
 }
 .nav-links {
   display: flex;
@@ -271,7 +295,7 @@ section.compact { padding: 4rem 0; }
 .nav-links a:not(.btn)::after {
   content: '';
   position: absolute; left: 0; right: 0; bottom: -6px;
-  height: 1.5px; background: var(--teal);
+  height: 1.5px; background: var(--sage);
   transform: scaleX(0); transform-origin: left;
   transition: transform .3s var(--ease);
 }
@@ -328,15 +352,42 @@ section.compact { padding: 4rem 0; }
   position: absolute;
   pointer-events: none;
   z-index: 0;
-  filter: blur(2px);
+  filter: blur(1px);
   animation: blobBreathe 14s ease-in-out infinite;
   transform-origin: center;
 }
 .blob svg { width: 100%; height: 100%; display: block; }
-.blob-sage  svg path { fill: var(--sage); }
-.blob-teal  svg path { fill: var(--teal); }
-.blob-mauve svg path { fill: var(--mauve); }
-.blob-slate svg path { fill: var(--slate); }
+.blob-sage    svg path,
+.blob-sage    svg ellipse { fill: var(--sage); }
+.blob-teal    svg path { fill: var(--sage-deep); }
+.blob-mauve   svg path { fill: var(--lotus); }
+.blob-slate   svg path { fill: var(--periwink-deep); }
+.blob-lotus   svg path { fill: var(--lotus); }
+.blob-periwink svg path { fill: var(--periwink); }
+
+/* Subtle floating botanical decorations (leaves, petals) */
+.botanical {
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.55;
+  animation: leafSway 16s ease-in-out infinite;
+  transform-origin: center;
+}
+.botanical svg { width: 100%; height: 100%; display: block; }
+.botanical.b-tr { top: 6%; right: 4%; width: 110px; }
+.botanical.b-tl { top: 8%; left: 5%; width: 95px;  animation-delay: -3s; animation-duration: 19s; }
+.botanical.b-br { bottom: 8%; right: 6%; width: 130px; animation-delay: -6s; animation-duration: 22s; }
+.botanical.b-bl { bottom: 10%; left: 4%; width: 100px; animation-delay: -9s; animation-duration: 18s; }
+.botanical.b-mr { top: 45%; right: 2%; width: 80px;  animation-delay: -4s; }
+.botanical.b-ml { top: 48%; left: 2%; width: 85px;  animation-delay: -7s; }
+
+@keyframes leafSway {
+  0%, 100% { transform: rotate(0deg) translateY(0); }
+  25%      { transform: rotate(4deg) translateY(-6px); }
+  50%      { transform: rotate(-3deg) translateY(0); }
+  75%      { transform: rotate(2deg) translateY(-4px); }
+}
 
 .blob-tr { top: -120px; right: -120px; width: 480px; height: 480px; opacity: 0.18; }
 .blob-bl { bottom: -160px; left: -120px; width: 520px; height: 520px; opacity: 0.15; }
@@ -370,7 +421,10 @@ section.compact { padding: 4rem 0; }
   display: flex; align-items: center;
   padding: 8rem 0 5rem;
   position: relative; overflow: hidden;
-  background: radial-gradient(circle at 30% 30%, var(--sage-soft) 0%, var(--bg) 60%);
+  background:
+    radial-gradient(circle at 78% 18%, rgba(216,168,168,0.28) 0%, transparent 45%),
+    radial-gradient(circle at 12% 84%, rgba(120,144,96,0.22) 0%, transparent 50%),
+    radial-gradient(circle at 50% 0%, var(--periwink-soft) 0%, var(--bg) 55%);
 }
 .hero-content { position: relative; z-index: 2; max-width: 760px; }
 .hero h1 {
@@ -384,7 +438,7 @@ section.compact { padding: 4rem 0; }
   animation: lineRise 0.85s var(--ease) forwards;
 }
 .hero h1 .line:nth-child(1) { animation-delay: 0.15s; }
-.hero h1 .line:nth-child(2) { animation-delay: 0.40s; color: var(--teal-deep); }
+.hero h1 .line:nth-child(2) { animation-delay: 0.40s; color: var(--sage-deep); font-style: italic; }
 .hero h1 .line:nth-child(3) { animation-delay: 0.65s; }
 @keyframes lineRise {
   to { opacity: 1; transform: none; }
@@ -429,10 +483,12 @@ section.compact { padding: 4rem 0; }
 .familiar-list li::before {
   content: '';
   position: absolute;
-  left: 0; top: 1.5rem;
-  width: 7px; height: 7px;
-  background: var(--mauve);
-  border-radius: 50%;
+  left: 0; top: 1.35rem;
+  width: 10px; height: 14px;
+  background: var(--lotus);
+  /* small leaf shape */
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-25deg);
 }
 .familiar-closer {
   text-align: center;
@@ -486,9 +542,9 @@ section.compact { padding: 4rem 0; }
   border-radius: var(--radius) var(--radius) 0 0;
   opacity: 0.85;
 }
-.card.accent-teal::before  { background: var(--teal); }
-.card.accent-mauve::before { background: var(--mauve); }
-.card.accent-slate::before { background: var(--slate); }
+.card.accent-teal::before  { background: var(--sage-deep); }
+.card.accent-mauve::before { background: var(--lotus); }
+.card.accent-slate::before { background: var(--periwink-deep); }
 .card:hover {
   transform: translateY(-4px);
   box-shadow: 0 20px 50px rgba(44,44,44,0.07);
@@ -527,8 +583,14 @@ section.compact { padding: 4rem 0; }
   border-radius: 50%;
   background: var(--sage);
 }
-.chip-card:nth-child(3n+2) .chip-dot { background: var(--teal); }
-.chip-card:nth-child(3n+3) .chip-dot { background: var(--mauve); }
+.chip-card:nth-child(3n+2) .chip-dot { background: var(--lotus); }
+.chip-card:nth-child(3n+3) .chip-dot { background: var(--periwink-deep); }
+.chip-dot {
+  /* leaf-petal shape */
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-15deg);
+  width: 11px; height: 14px;
+}
 
 /* ---------- Two-column "what I do / don't do" ---------- */
 
@@ -551,17 +613,18 @@ section.compact { padding: 4rem 0; }
 }
 .col ul li::before {
   content: '';
-  position: absolute; left: 0; top: 1rem;
-  width: 6px; height: 6px;
+  position: absolute; left: 0; top: 0.85rem;
+  width: 8px; height: 11px;
   background: var(--sage);
-  border-radius: 50%;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-25deg);
 }
-.col.col-no ul li::before { background: var(--mauve); }
+.col.col-no ul li::before { background: var(--lotus); transform: rotate(15deg); border-radius: 50% 50% 0 50%; }
 .col-note {
   margin-top: 1.5rem;
   padding: 1.1rem 1.25rem;
-  background: var(--bg-soft);
-  border-left: 3px solid var(--mauve);
+  background: var(--lotus-soft);
+  border-left: 3px solid var(--lotus);
   border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
   color: var(--light-text);
   font-size: 0.95rem;
@@ -583,7 +646,7 @@ section.compact { padding: 4rem 0; }
   content: '';
   position: absolute; top: 0; left: 0; right: 0;
   height: 4px;
-  background: linear-gradient(90deg, var(--sage), var(--teal), var(--mauve));
+  background: linear-gradient(90deg, var(--sage), var(--lotus), var(--periwink-deep));
 }
 .price {
   font-family: var(--serif);
@@ -620,11 +683,11 @@ section.compact { padding: 4rem 0; }
 }
 .price-includes li:first-child { border-top: 0; }
 .price-includes li::before {
-  content: '✓';
-  position: absolute; left: 0; top: 0.65rem;
-  color: var(--teal);
+  content: '✦';
+  position: absolute; left: 0; top: 0.5rem;
+  color: var(--sage-deep);
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 1rem;
 }
 
 /* ---------- Pull quote (final CTA italic) ---------- */
@@ -655,7 +718,7 @@ section.compact { padding: 4rem 0; }
   text-align: left;
   transition: color .25s var(--ease);
 }
-.faq-q:hover { color: var(--teal-deep); }
+.faq-q:hover { color: var(--sage-deep); }
 .faq-icon {
   width: 18px; height: 18px;
   flex-shrink: 0;
@@ -665,7 +728,7 @@ section.compact { padding: 4rem 0; }
 .faq-icon::before, .faq-icon::after {
   content: '';
   position: absolute;
-  background: var(--teal-deep);
+  background: var(--sage-deep);
   border-radius: 1px;
 }
 .faq-icon::before { top: 50%; left: 0; right: 0; height: 1.5px; transform: translateY(-50%); }
@@ -804,8 +867,8 @@ section.compact { padding: 4rem 0; }
   color: var(--deep);
   font-size: 0.97rem;
 }
-.contact-strip a:hover { color: var(--teal-deep); }
-.contact-strip svg { width: 18px; height: 18px; color: var(--teal); }
+.contact-strip a:hover { color: var(--sage-deep); }
+.contact-strip svg { width: 18px; height: 18px; color: var(--sage); }
 .contact-strip .sep { color: var(--border); user-select: none; }
 @media (max-width: 600px) {
   .contact-strip { flex-direction: column; gap: 0.85rem; padding: 1.5rem; }
