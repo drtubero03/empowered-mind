@@ -16,6 +16,8 @@
     initFaq();
     initApplyForm();
     initActiveNav();
+    initHeroVideo();
+    initFoamParticles();
   });
 
   /* ---- Nav scroll state ---- */
@@ -168,6 +170,40 @@
         availability: 'Availability',
       };
       return map[k] || k;
+    }
+  }
+
+  /* ---- Ocean: hero video fade-in ---- */
+  function initHeroVideo() {
+    const v = document.querySelector('.hero-video');
+    if (!v) return;
+    const reveal = () => v.classList.add('loaded');
+    if (v.readyState >= 2) reveal();
+    else v.addEventListener('loadeddata', reveal, { once: true });
+    // Some browsers block autoplay until any user gesture; restart on first interaction
+    const tryPlay = () => v.play().catch(() => {});
+    document.addEventListener('click', tryPlay, { once: true, passive: true });
+    document.addEventListener('touchstart', tryPlay, { once: true, passive: true });
+  }
+
+  /* ---- Ocean: drifting foam particles ---- */
+  function initFoamParticles() {
+    const host = document.getElementById('foamHost');
+    if (!host) return;
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) return;
+    const COUNT = 18;
+    for (let i = 0; i < COUNT; i++) {
+      const f = document.createElement('span');
+      f.className = 'foam';
+      const size = 4 + Math.random() * 8;
+      f.style.width = size + 'px';
+      f.style.height = size + 'px';
+      f.style.left = Math.random() * 100 + '%';
+      f.style.animationDuration = 14 + Math.random() * 18 + 's';
+      f.style.animationDelay = -Math.random() * 25 + 's';
+      f.style.opacity = 0.3 + Math.random() * 0.5;
+      host.appendChild(f);
     }
   }
 
