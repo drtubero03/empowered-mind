@@ -108,6 +108,8 @@
       <option value="index.html">Home</option>
       <option value="about.html">About</option>
       <option value="csrt-package.html">CSRT Package</option>
+      <option value="group-therapy.html" data-v2only>Group Therapy (V2 only)</option>
+      <option value="blog.html" data-v2only>Blog (V2 only)</option>
       <option value="apply.html">Apply</option>
     </select>
   </div>
@@ -148,10 +150,22 @@
 
   sel.addEventListener('change', () => {
     const page = sel.value;
-    iframeV1.src = `v1/${page}`;
+    const opt = sel.options[sel.selectedIndex];
+    const v2only = opt.hasAttribute('data-v2only');
+    if (v2only) {
+      // Force V2 only when the page doesn't exist in V1
+      seg.querySelectorAll('button').forEach((b) => b.classList.remove('active'));
+      seg.querySelector('button[data-mode=v2]').classList.add('active');
+      stage.classList.add('single');
+      document.querySelector('[data-which=v1]').classList.add('hidden');
+      document.querySelector('[data-which=v2]').classList.remove('hidden');
+    }
     iframeV2.src = `v2/${page}`;
-    linkV1.href = `v1/${page}`;
     linkV2.href = `v2/${page}`;
+    if (!v2only) {
+      iframeV1.src = `v1/${page}`;
+      linkV1.href = `v1/${page}`;
+    }
   });
 </script>
 
