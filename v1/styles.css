@@ -427,37 +427,6 @@ section.compact { padding: 4rem 0; }
     radial-gradient(circle at 50% 0%, var(--periwink-soft) 0%, var(--bg) 55%);
 }
 
-/* Looping lotus video behind hero — kept very quiet, ambient texture only.
-   Heavy blur + low opacity + saturation pull-back so it reads as gentle motion
-   in the background, never as a focal element competing with the headline. */
-.hero-video {
-  position: absolute; inset: 0; width: 100%; height: 100%;
-  object-fit: cover; z-index: 0;
-  opacity: 0; transition: opacity 1.8s var(--ease);
-  object-position: 70% 50%;
-  /* Slightly zoomed so we never see the lotus' hard outline or background edge */
-  transform: scale(1.15);
-  transform-origin: 70% 50%;
-  filter: blur(14px) saturate(0.5) brightness(1.05);
-}
-.hero-video.loaded { opacity: 0.32; }
-
-/* Strong linen wash so the palette dominates; lotus is implied, not seen */
-.hero-overlay {
-  position: absolute; inset: 0; z-index: 1;
-  pointer-events: none;
-  background:
-    /* near-opaque linen across the whole hero */
-    linear-gradient(180deg, rgba(248,245,238,0.78) 0%, rgba(248,245,238,0.62) 100%),
-    /* original periwink/sage gradient layered on top so it still feels v1 */
-    radial-gradient(circle at 78% 18%, rgba(216,168,168,0.22) 0%, transparent 45%),
-    radial-gradient(circle at 12% 84%, rgba(120,144,96,0.18) 0%, transparent 50%),
-    radial-gradient(circle at 50% 0%, var(--periwink-soft) 0%, transparent 55%);
-}
-@media (max-width: 760px) {
-  .hero-video { object-position: 50% 60%; transform: scale(1.25); }
-  .hero-video.loaded { opacity: 0.22; }
-}
 
 .hero-content { position: relative; z-index: 2; max-width: 760px; }
 .hero h1 {

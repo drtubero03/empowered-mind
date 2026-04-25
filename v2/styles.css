@@ -4,37 +4,47 @@
    ============================================================ */
 
 :root {
-  /* ── Ocean / Seaside palette
-        Sampled directly from the dawn-beach reference video:
-        teal sea, pale sky, dusty pink foam, warm sand. ── */
-  --bg:           #F4ECE3;     /* warm sand wash */
-  --bg-soft:      #EFE0D2;
-  --sand:         #C6B4A2;
-  --sand-deep:    #A27E6C;
+  /* ── Sand + Turquoise palette
+        Two-color discipline: warm sand neutrals + clear turquoise as the
+        accent. Pinks/corals dropped; slate blue dropped; everything else
+        ladders off these two families. ── */
+  --bg:           #F6EFE3;     /* warm sand wash */
+  --bg-soft:      #EBDFCB;
+  --bg-warm:      #F2E5CD;     /* sun-warmed sand */
 
-  --foam:         #F5E4DE;     /* pinkish foam */
-  --sky-pink:     #F0C8C0;
-  --sky-blue:     #B0C4D8;
+  --sand:         #DCC8AC;     /* primary sand */
+  --sand-soft:    #EFE2C8;
+  --sand-deep:    #B69874;     /* toasted sand */
+  --sand-shadow:  #8C7558;
 
-  --teal-light:   #B4D8D6;
-  --teal:         #6C9090;     /* primary mid-tone teal */
-  --teal-deep:    #487E7E;
-  --teal-dark:    #2F5F60;
+  --turq-pale:    #DEF1EE;     /* foamy turquoise wash */
+  --turq-light:   #A8DBD6;
+  --turq:         #5BB8B5;     /* primary turquoise */
+  --turq-deep:    #2E8B87;
+  --turq-dark:    #1B5F5C;     /* deepest turquoise */
 
-  --slate:        #5A7E90;     /* deep horizon */
-  --slate-deep:   #3A5C70;
+  /* Aliases so shared rules (.bg-teal, .bg-sage, .mauve usage) still pick up
+     palette colors instead of reverting to old pinks/blues. */
+  --teal-light:   var(--turq-light);
+  --teal:         var(--turq);
+  --teal-deep:    var(--turq-deep);
+  --teal-dark:    var(--turq-dark);
+  --sage:         var(--turq);
+  --sage-soft:    var(--turq-pale);
+  --sage-deep:    var(--turq-deep);
+  --foam:         var(--sand-soft);
+  --sky-pink:     var(--sand);
+  --sky-blue:     var(--turq-light);
+  --slate:        var(--turq-deep);
+  --slate-deep:   var(--turq-dark);
+  --mauve:        var(--sand-deep);
+  --mauve-soft:   var(--sand-soft);
 
-  --sage:         #6C9090;     /* alias kept for shared rules */
-  --sage-soft:    #DCEDEC;
-  --sage-deep:    #487E7E;
-  --mauve:        #DDA89E;     /* sunset coral */
-  --mauve-soft:   #F5DDD7;
-
-  --deep:         #1F3A4A;     /* deep ocean ink */
-  --light-text:   #4F6671;
-  --muted:        #8A9CA8;
+  --deep:         #163A40;     /* deep ocean ink — slight teal cast */
+  --light-text:   #5A6B6E;
+  --muted:        #9C9180;
   --white:        #FFFFFF;
-  --border:       #DDD0C0;
+  --border:       #DCCFB8;
 
   --serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
   --sans:  'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
@@ -195,8 +205,8 @@ section.bg-mist::after {
     180deg,
     transparent 0px,
     transparent 96px,
-    rgba(72,126,126,0.045) 96px,
-    rgba(72,126,126,0.045) 98px
+    rgba(46,139,135,0.05) 96px,
+    rgba(46,139,135,0.05) 98px
   );
   z-index: 0;
 }
@@ -270,7 +280,7 @@ section > * { position: relative; z-index: 1; }
   background: var(--teal-dark);
   color: var(--white);
   transform: translateY(-2px);
-  box-shadow: 0 12px 28px rgba(72,126,126,0.32);
+  box-shadow: 0 12px 28px rgba(46,139,135,0.32);
 }
 
 .btn-outline {
@@ -470,8 +480,8 @@ section > * { position: relative; z-index: 1; }
 .hero-overlay {
   position: absolute; inset: 0; z-index: 1;
   background:
-    linear-gradient(180deg, rgba(244,236,227,0.45) 0%, rgba(108,144,144,0.10) 30%, rgba(31,58,74,0.55) 100%),
-    radial-gradient(ellipse at 50% 20%, rgba(240,200,192,0.32), transparent 60%);
+    linear-gradient(180deg, rgba(246,239,227,0.30) 0%, rgba(91,184,181,0.15) 35%, rgba(22,58,64,0.65) 100%),
+    radial-gradient(ellipse at 50% 20%, rgba(91,184,181,0.20), transparent 60%);
   pointer-events: none;
 }
 
@@ -555,7 +565,7 @@ section > * { position: relative; z-index: 1; }
   position: absolute;
   width: 6px; height: 6px;
   border-radius: 50%;
-  background: rgba(245,228,222,0.7);
+  background: rgba(239,226,200,0.75);
   bottom: -10px;
   animation: foamRise linear infinite;
 }
