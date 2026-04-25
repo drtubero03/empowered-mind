@@ -426,6 +426,37 @@ section.compact { padding: 4rem 0; }
     radial-gradient(circle at 12% 84%, rgba(120,144,96,0.22) 0%, transparent 50%),
     radial-gradient(circle at 50% 0%, var(--periwink-soft) 0%, var(--bg) 55%);
 }
+
+/* Optional looping lotus video behind hero — fades in once decoded */
+.hero-video {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; z-index: 0;
+  opacity: 0; transition: opacity 1.4s var(--ease);
+  /* Right-bias the lotus so it sits behind/right of the heading */
+  object-position: 70% 50%;
+  filter: blur(0.5px) saturate(0.95);
+}
+.hero-video.loaded { opacity: 1; }
+
+/* Heavy color overlay so the periwink palette dominates the white video bg */
+.hero-overlay {
+  position: absolute; inset: 0; z-index: 1;
+  pointer-events: none;
+  background:
+    /* darken on the left so the heading reads */
+    linear-gradient(95deg, rgba(248,245,238,0.92) 0%, rgba(248,245,238,0.65) 35%, rgba(248,245,238,0.22) 60%, rgba(248,245,238,0.0) 100%),
+    /* periwink + sage tint on top */
+    linear-gradient(180deg, rgba(184,196,227,0.18) 0%, rgba(199,213,181,0.15) 100%);
+}
+@media (max-width: 760px) {
+  .hero-overlay {
+    background:
+      linear-gradient(180deg, rgba(248,245,238,0.85) 0%, rgba(248,245,238,0.55) 60%, rgba(248,245,238,0.20) 100%),
+      linear-gradient(180deg, rgba(184,196,227,0.18) 0%, rgba(199,213,181,0.15) 100%);
+  }
+  .hero-video { object-position: 50% 70%; }
+}
+
 .hero-content { position: relative; z-index: 2; max-width: 760px; }
 .hero h1 {
   font-size: clamp(2.7rem, 6vw, 4.6rem);

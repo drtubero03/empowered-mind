@@ -16,6 +16,7 @@
     initFaq();
     initApplyForm();
     initActiveNav();
+    initHeroVideo();
   });
 
   /* ---- Nav scroll state ---- */
@@ -169,6 +170,18 @@
       };
       return map[k] || k;
     }
+  }
+
+  /* ---- Hero video fade-in (V1 lotus / V2 ocean) ---- */
+  function initHeroVideo() {
+    const v = document.querySelector('.hero-video');
+    if (!v) return;
+    const reveal = () => v.classList.add('loaded');
+    if (v.readyState >= 2) reveal();
+    else v.addEventListener('loadeddata', reveal, { once: true });
+    const tryPlay = () => v.play().catch(() => {});
+    document.addEventListener('click', tryPlay, { once: true, passive: true });
+    document.addEventListener('touchstart', tryPlay, { once: true, passive: true });
   }
 
   /* ---- Active nav link ---- */
