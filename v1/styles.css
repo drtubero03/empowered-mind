@@ -483,12 +483,10 @@ section.compact { padding: 4rem 0; }
 .familiar-list li::before {
   content: '';
   position: absolute;
-  left: 0; top: 1.35rem;
-  width: 10px; height: 14px;
+  left: 0; top: 1.5rem;
+  width: 8px; height: 8px;
   background: var(--lotus);
-  /* small leaf shape */
-  border-radius: 50% 50% 50% 0;
-  transform: rotate(-25deg);
+  border-radius: 50%;
 }
 .familiar-closer {
   text-align: center;
@@ -585,12 +583,6 @@ section.compact { padding: 4rem 0; }
 }
 .chip-card:nth-child(3n+2) .chip-dot { background: var(--lotus); }
 .chip-card:nth-child(3n+3) .chip-dot { background: var(--periwink-deep); }
-.chip-dot {
-  /* leaf-petal shape */
-  border-radius: 50% 50% 50% 0;
-  transform: rotate(-15deg);
-  width: 11px; height: 14px;
-}
 
 /* ---------- Two-column "what I do / don't do" ---------- */
 
@@ -613,13 +605,12 @@ section.compact { padding: 4rem 0; }
 }
 .col ul li::before {
   content: '';
-  position: absolute; left: 0; top: 0.85rem;
-  width: 8px; height: 11px;
+  position: absolute; left: 0; top: 1rem;
+  width: 7px; height: 7px;
   background: var(--sage);
-  border-radius: 50% 50% 50% 0;
-  transform: rotate(-25deg);
+  border-radius: 50%;
 }
-.col.col-no ul li::before { background: var(--lotus); transform: rotate(15deg); border-radius: 50% 50% 0 50%; }
+.col.col-no ul li::before { background: var(--lotus); }
 .col-note {
   margin-top: 1.5rem;
   padding: 1.1rem 1.25rem;
