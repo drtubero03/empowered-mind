@@ -20,7 +20,7 @@ app = Flask(__name__)
 RESEND_API_KEY = os.environ["RESEND_API_KEY"]
 TO_EMAIL = os.environ.get("TO_EMAIL", "Drtubero03@gmail.com")
 FROM_EMAIL = os.environ.get(
-    "FROM_EMAIL", "Empowered Mind <noreply@cannacrypted.com>"
+    "FROM_EMAIL", "Empowered Mind <noreply@dradriantubero.com>"
 )
 
 ALLOWED_ORIGINS = {
