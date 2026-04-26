@@ -1,45 +1,54 @@
 # Empowered Mind
 
-Static marketing site for Dr. Adrian Tubero, Psy.D. — Core Self Reclamation Therapy (CSRT) practice.
+Static marketing site for Dr. Adrian Tubero, Psy.D. — Core Self Reclamation Therapy (CSRT) practice and *The Midlife Shift* group for women.
 
-**Live (GitHub Pages):** https://zelidav.github.io/empowered-mind/
-
-## Design comparison
-
-Two design directions are deployed side-by-side. The compare page lets you toggle between them and switch pages without leaving:
-
-> **Compare:** https://zelidav.github.io/empowered-mind/compare.html
-
-| Variant | Direction | Branch | Direct preview |
-|---|---|---|---|
-| **V1** | Periwink lavender + Empowered Mind sage/pink lotus, botanical leaves & petals | [`v1-periwink-botanical`](https://github.com/zelidav/empowered-mind/tree/v1-periwink-botanical) | [`/v1/`](https://zelidav.github.io/empowered-mind/v1/) |
-| **V2** | Ocean — sunset/teal palette, looping wave video hero, animated SVG waves + drifting foam | [`v2-ocean`](https://github.com/zelidav/empowered-mind/tree/v2-ocean) | [`/v2/`](https://zelidav.github.io/empowered-mind/v2/) |
-
-`main` is the original sage/teal version (untouched baseline). The two variants live as branches and are also copied into `v1/` and `v2/` subdirectories on `main` so they can be served from the same Pages site (which lets the compare page iframe them — same-origin).
-
-When you pick a winner, merge that branch into `main` and delete the `v1/` and `v2/` subdirs.
-
-
-> Custom domain `doctor.tubero.com` is planned but not yet wired — `tubero.com` is not currently on the user's registrar account. When it is, drop a `CNAME` file in repo root containing `doctor.tubero.com` and add a CNAME record `doctor → zelidav.github.io` in DNS.
+**Live:** https://zelidav.github.io/empowered-mind/
 
 ## Stack
 
-Vanilla HTML / CSS / JS. No build step. No external JS libraries. SVG + CSS for all visual texture (no raster images).
+Vanilla HTML / CSS / JS. No build step. No external JS libraries. SVG + CSS for visual texture; one MP4 for the looping wave hero on the group page; one portrait JPEG.
 
-## Files
+## Pages
 
 | File | Purpose |
 |---|---|
 | `index.html` | Home — hero, recognition, about preview, different way, what I do, 12-session teaser, FAQ, final CTA |
-| `about.html` | About Dr. Tubero — bio, approach cards, credentials |
-| `csrt-package.html` | The 12-Session Program — overview, focus areas, features, pricing, fit |
-| `apply.html` | Application form (vanilla; opens mailto fallback on submit) |
-| `styles.css` | Shared design system |
-| `script.js` | Nav scroll, mobile menu, scroll fade-up, FAQ accordion, form submit |
+| `about.html` | About Dr. Tubero — bio (with portrait), approach cards, contact |
+| `csrt-package.html` | The 12-Session CSRT Program — overview, focus areas, features, $5,000 pricing, fit, FAQ |
+| `group-therapy.html` | The Midlife Shift — Spring 2026 6-week experiential group for women (Thurs May 15 – Jun 19) |
+| `blog.html` | Index of three writing posts on midlife / inner voice / shifting patterns |
+| `blog-disorientation.html`, `blog-inner-voice.html`, `blog-shift.html` | Long-form articles |
+| `apply.html` | Application form. Pre-selects inquiry type from URL: `?inquiry=group` / `?inquiry=waitlist` / etc. |
+| `styles.css`, `script.js` | Shared design system + interactions (nav scroll, mobile menu, FAQ accordion, scroll fade-in, video fade-in, foam particles, mailto fallback) |
+
+## Assets
+
+| File | Use |
+|---|---|
+| `lotus.png` | Brand mark in nav + footer (transparent PNG) |
+| `favicon.ico` / `favicon-32.png` / `apple-touch-icon.png` | Browser/device icons |
+| `adrian.jpg`, `adrian-sq.jpg` | Dr. Tubero portrait (about preview + about page bio) |
+| `hero-bg.mp4` | Looping ocean reference for group-therapy hero (~3.5MB) |
+
+## Design system
+
+Sand + turquoise palette in `styles.css :root`. Two-color discipline — pinks/coral/slate intentionally absent. Typography: Cormorant Garamond (headings) + DM Sans (body). Section variants (`.bg-foam`, `.bg-sand`, `.bg-tide`, `.bg-mist`, `.bg-teal`, `.bg-dark`) carry the ocean feel through every page.
+
+## Group references across pages
+
+The Spring 2026 group (*The Midlife Shift*) is mentioned subtly in context, not as a banner — italic serif asides woven into existing copy (`.group-aside` class). Found on:
+- index.html — bottom of about preview
+- about.html — bottom of bio
+- csrt-package.html — under "Who it's for"
+- blog.html — below the post list
+- All three blog post pages — below the closing CTA
+- apply.html — as a select option in "I'm reaching out about"
+
+The nav-bar CTA ("See If We're a Fit" → `apply.html`) and the group-page CTAs (`apply.html?inquiry=group`) all route to the same form.
 
 ## Local preview
 
-Just open `index.html` in a browser, or:
+Just open `index.html`, or:
 
 ```
 python -m http.server 8000
@@ -47,11 +56,19 @@ python -m http.server 8000
 
 Then visit http://localhost:8000.
 
-## Editing copy
+## Branches
 
-All copy lives directly in the HTML files — no CMS. Search-and-replace works for shared text (phone, email).
+- `main` — live site
+- `v1-periwink-botanical`, `v2-ocean` — earlier design exploration branches kept as archive
 
-## Contact info (used in nav, apply form, footer)
+## Custom domain (planned)
+
+`doctor.tubero.com` — not yet wired (registrar account doesn't have `tubero.com` yet). When acquired:
+1. Drop a `CNAME` file in repo root with `doctor.tubero.com`
+2. Add a CNAME DNS record `doctor → zelidav.github.io`
+3. Enable HTTPS in Pages settings after the cert provisions
+
+## Contact
 
 - Phone: 917-568-7909
 - Email: Drtubero03@gmail.com

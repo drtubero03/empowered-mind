@@ -5,7 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The 12-Session CSRT Program — Empowered Mind</title>
   <meta name="description" content="A 12-session Core Self Reclamation Therapy (CSRT) package for high-functioning adults ready for focused, lasting change. $5,000. With Dr. Adrian Tubero, Psy.D." />
-  <link rel="icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='14' fill='%238FAF9B'/><circle cx='16' cy='17' r='4' fill='white'/></svg>" />
+  <link rel="icon" href="favicon.ico" sizes="any" />
+  <link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500&display=swap" />
@@ -17,10 +19,7 @@
 <nav class="nav">
   <div class="container nav-inner">
     <a href="index.html" class="nav-logo">
-      <svg class="logo-mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-        <path d="M16 3 C 8 8, 3 15, 8 22 C 13 29, 23 29, 26 22 C 30 14, 22 7, 16 3 Z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
-        <circle cx="16" cy="18" r="3.5" fill="currentColor" opacity="0.45"/>
-      </svg>
+      <img src="lotus.png" class="logo-mark" alt="Empowered Mind lotus" />
       Empowered Mind
     </a>
     <button class="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false">
@@ -30,6 +29,8 @@
       <li><a href="index.html">Home</a></li>
       <li><a href="about.html">About</a></li>
       <li><a href="csrt-package.html">CSRT Package</a></li>
+      <li><a href="group-therapy.html">Group</a></li>
+      <li><a href="blog.html">Blog</a></li>
       <li><a href="apply.html">Apply</a></li>
       <li><a href="apply.html" class="btn btn-primary">See If We're a Fit</a></li>
     </ul>
@@ -38,11 +39,22 @@
 
 <!-- ===== HERO ===== -->
 <header class="hero hero-sub-page">
-  <div class="blob blob-tr blob-teal" aria-hidden="true">
-    <svg viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg"><path d="M421.5 73.5C497.6 121.7 555.8 199.7 558 280.8C560.3 361.9 506.6 446.2 432.6 491.8C358.5 537.4 264.1 544.4 187.5 504.7C110.9 465.1 52.1 378.9 50.1 296.6C48 214.3 102.7 135.7 173.4 84.4C244.1 33.1 330.7 9.1 421.5 73.5Z"/></svg>
-  </div>
-  <div class="blob blob-bl blob-mauve" aria-hidden="true" style="opacity:0.13;">
-    <svg viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg"><path d="M460 80C530 130 580 220 560 310C540 400 450 470 360 480C270 490 180 440 110 360C40 280 30 180 90 110C150 40 270 30 360 50C400 60 430 65 460 80Z"/></svg>
+  <!-- OCEAN_DECOR -->
+  <video class="hero-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+    <source src="hero-bg.mp4" type="video/mp4">
+  </video>
+  <div class="hero-overlay" aria-hidden="true"></div>
+  <div class="foam-particles" id="foamHost" aria-hidden="true"></div>
+  <div class="waves" aria-hidden="true">
+    <svg viewBox="0 0 2400 140" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path class="wave-layer wave-1" d="M0 80 Q 150 40, 300 80 T 600 80 T 900 80 T 1200 80 T 1500 80 T 1800 80 T 2100 80 T 2400 80 V140 H0 Z" fill="rgba(46,139,135,0.55)"/>
+    </svg>
+    <svg viewBox="0 0 2400 140" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path class="wave-layer wave-2" d="M0 95 Q 200 55, 400 95 T 800 95 T 1200 95 T 1600 95 T 2000 95 T 2400 95 V140 H0 Z" fill="rgba(91,184,181,0.55)"/>
+    </svg>
+    <svg viewBox="0 0 2400 140" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path class="wave-layer wave-3" d="M0 110 Q 100 80, 200 110 T 400 110 T 600 110 T 800 110 T 1000 110 T 1200 110 T 1400 110 T 1600 110 T 1800 110 T 2000 110 T 2200 110 T 2400 110 V140 H0 Z" fill="rgba(239,226,200,0.85)"/>
+    </svg>
   </div>
   <div class="container hero-content">
     <p class="eyebrow">The 12-Session Program</p>
@@ -58,25 +70,22 @@
 </header>
 
 <!-- ===== PROGRAM OVERVIEW ===== -->
-<section class="bg-linen">
+<section class="bg-foam">
   <div class="container narrow">
     <p class="eyebrow fade-up">Overview</p>
     <h2 class="fade-up">Program Overview</h2>
-    <div class="divider-line"></div>
+    <div class="divider-line"></div><div class="tide-glyph" aria-hidden="true"><svg viewBox="0 0 64 12" xmlns="http://www.w3.org/2000/svg"><path d="M2 6 Q 8 1, 14 6 T 26 6 T 38 6 T 50 6 T 62 6"/></svg></div>
     <p class="fade-up delay-1">The CSRT package is a 12-session, private, one-on-one therapy process for individuals who want to address specific emotional goals. Sessions are typically scheduled weekly or every other week, depending on the pace that best supports integration.</p>
   </div>
 </section>
 
 <!-- ===== WHAT WE WORK THROUGH ===== -->
-<section class="bg-soft">
-  <div class="blob blob-l blob-sage" aria-hidden="true" style="opacity:0.10;">
-    <svg viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg"><path d="M421.5 73.5C497.6 121.7 555.8 199.7 558 280.8C560.3 361.9 506.6 446.2 432.6 491.8C358.5 537.4 264.1 544.4 187.5 504.7C110.9 465.1 52.1 378.9 50.1 296.6C48 214.3 102.7 135.7 173.4 84.4C244.1 33.1 330.7 9.1 421.5 73.5Z"/></svg>
-  </div>
+<section class="bg-sand">
   <div class="container" style="position:relative;z-index:2;">
     <div class="center" style="margin-bottom:2.5rem;">
       <p class="eyebrow fade-up">Focus Areas</p>
       <h2 class="fade-up">What We Can Work Through Together</h2>
-      <div class="divider-line"></div>
+      <div class="divider-line"></div><div class="tide-glyph" aria-hidden="true"><svg viewBox="0 0 64 12" xmlns="http://www.w3.org/2000/svg"><path d="M2 6 Q 8 1, 14 6 T 26 6 T 38 6 T 50 6 T 62 6"/></svg></div>
     </div>
     <div class="chip-grid">
       <div class="chip-card fade-up"><span class="chip-dot"></span><span>Emotional exhaustion or burnout</span></div>
@@ -92,7 +101,7 @@
 </section>
 
 <!-- ===== PACKAGE FEATURES ===== -->
-<section class="bg-linen">
+<section class="bg-mist">
   <div class="container">
     <div class="center" style="margin-bottom:2.5rem;">
       <p class="eyebrow fade-up">Package</p>
@@ -121,14 +130,11 @@
 </section>
 
 <!-- ===== PRICING ===== -->
-<section class="bg-sage">
-  <div class="blob blob-r blob-teal" aria-hidden="true" style="opacity:0.14;">
-    <svg viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg"><path d="M460 80C530 130 580 220 560 310C540 400 450 470 360 480C270 490 180 440 110 360C40 280 30 180 90 110C150 40 270 30 360 50C400 60 430 65 460 80Z"/></svg>
-  </div>
+<section class="bg-tide">
   <div class="container narrow" style="position:relative;z-index:2;">
     <div class="center" style="margin-bottom:2rem;">
       <p class="eyebrow fade-up">Investment</p>
-      <h2 class="fade-up">The Package</h2>
+      <div class="tide-glyph" aria-hidden="true"><svg viewBox="0 0 64 12" xmlns="http://www.w3.org/2000/svg"><path d="M2 6 Q 8 1, 14 6 T 26 6 T 38 6 T 50 6 T 62 6"/></svg></div><h2 class="fade-up">The Package</h2>
     </div>
     <div class="pricing fade-up delay-1">
       <div class="price">$5,000</div>
@@ -151,7 +157,7 @@
 </section>
 
 <!-- ===== WHO IT'S FOR / NOT FOR ===== -->
-<section class="bg-linen">
+<section class="bg-foam">
   <div class="container">
     <div class="center" style="margin-bottom:2.5rem;">
       <p class="eyebrow fade-up">Fit</p>
@@ -166,6 +172,7 @@
           <li>Those ready to focus on a particular issue or pattern</li>
           <li>Individuals who have plateaued in other forms of therapy</li>
         </ul>
+        <p class="group-aside">For women specifically navigating midlife, see also <a href="group-therapy.html">The Midlife Shift</a> — a small 6-week group beginning May 15.</p>
       </div>
       <div class="col col-no fade-up delay-1">
         <h3>Who it's not for</h3>
@@ -183,7 +190,7 @@
 </section>
 
 <!-- ===== FAQ ===== -->
-<section class="bg-soft" id="faq">
+<section class="bg-sand" id="faq">
   <div class="container">
     <div class="center" style="margin-bottom:1rem;">
       <p class="eyebrow fade-up">Questions</p>
@@ -229,10 +236,7 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <a href="index.html" class="nav-logo">
-          <svg class="logo-mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-            <path d="M16 3 C 8 8, 3 15, 8 22 C 13 29, 23 29, 26 22 C 30 14, 22 7, 16 3 Z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
-            <circle cx="16" cy="18" r="3.5" fill="currentColor" opacity="0.55"/>
-          </svg>
+          <img src="lotus.png" class="logo-mark" alt="Empowered Mind lotus" />
           Empowered Mind
         </a>
         <p class="footer-tag">Not therapy forever — just enough to change what hasn't been changing.</p>
@@ -243,7 +247,9 @@
           <li><a href="index.html">Home</a></li>
           <li><a href="about.html">About</a></li>
           <li><a href="csrt-package.html">CSRT Package</a></li>
-          <li><a href="apply.html">Apply</a></li>
+          <li><a href="group-therapy.html">Group</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="apply.html">Apply</a></li>
         </ul>
       </div>
       <div>
