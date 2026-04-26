@@ -68,6 +68,7 @@
   <div class="container">
     <div class="form-wrap">
       <form id="apply-form" class="form-fields" novalidate>
+        <input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;opacity:0;height:0;width:0;" aria-hidden="true" />
         <div class="fg">
           <label for="name">Full name</label>
           <input type="text" id="name" name="name" autocomplete="name" required />
@@ -128,6 +129,7 @@
           Submit My Application
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
         </button>
+        <p class="form-error" role="alert" aria-live="polite"></p>
       </form>
 
       <div class="form-thanks" aria-live="polite">

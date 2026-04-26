@@ -1089,6 +1089,28 @@ section > * { position: relative; z-index: 1; }
   display: none;
 }
 .form-thanks.show { display: block; }
+
+/* Inline error / fallback notice under the submit button */
+.form-error {
+  display: none;
+  margin: 0.85rem 0 0;
+  padding: 0.75rem 0.95rem;
+  border-radius: var(--radius-sm);
+  background: var(--sand-soft);
+  border-left: 3px solid var(--sand-deep);
+  color: var(--deep);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+.form-error.show { display: block; }
+.form-error a {
+  color: var(--turq-deep);
+  border-bottom: 1px solid currentColor;
+  margin-left: 0.35rem;
+  font-weight: 500;
+}
+.form-error a:hover { color: var(--turq-dark); }
+.btn[disabled] { opacity: 0.7; cursor: progress; transform: none !important; }
 .form-thanks h3 {
   font-size: 1.65rem;
   margin-bottom: 0.85rem;

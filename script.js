@@ -120,6 +120,8 @@
   }
 
   /* ---- Apply form ---- */
+  const RELAY_URL = 'https://empowered-mind-mailer-784102208397.us-east1.run.app/apply';
+
   function initApplyForm() {
     const form = document.querySelector('#apply-form');
     if (!form) return;
@@ -134,54 +136,114 @@
       }
     }
 
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const data = new FormData(form);
-      // Build a mailto fallback so the user always has a delivery path
-      const fields = [];
-      data.forEach((value, key) => {
-        if (value && String(value).trim() !== '') fields.push(`${prettyKey(key)}: ${value}`);
-      });
-      // Group multi-value (availability) into one line
-      const avail = data.getAll('availability').filter(Boolean);
-      const body = [
-        'New application from Empowered Mind site:',
-        '',
-        ...fields.filter((line) => !line.startsWith('Availability:')),
-        avail.length ? `Availability: ${avail.join(', ')}` : null,
-      ]
-        .filter(Boolean)
-        .join('\n');
-
-      const subject = encodeURIComponent('New CSRT application — Empowered Mind site');
-      const mailto = `mailto:Drtubero03@gmail.com?subject=${subject}&body=${encodeURIComponent(body)}`;
-
-      // Open mail client in a new tab so the success state still shows
-      try { window.open(mailto, '_blank'); } catch (_) { window.location.href = mailto; }
-
-      const wrap = form.closest('.form-wrap');
-      if (wrap) {
-        wrap.classList.add('submitted');
-        const thanks = wrap.querySelector('.form-thanks');
-        if (thanks) {
-          thanks.classList.add('show');
-          thanks.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
+    form.addEventListener('submit', async (ev) => {
+      ev.preventDefault();
+      const submitBtn = form.querySelector('.form-submit');
+      const errorBox = form.querySelector('.form-error');
+      if (errorBox) { errorBox.classList.remove('show'); errorBox.textContent = ''; }
+      const originalLabel = submitBtn ? submitBtn.innerHTML : null;
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = 'Sending…';
       }
+
+      const fd = new FormData(form);
+      const payload = {
+        name: (fd.get('name') || '').trim(),
+        email: (fd.get('email') || '').trim(),
+        phone: (fd.get('phone') || '').trim(),
+        inquiry: fd.get('inquiry') || '',
+        source: fd.get('source') || '',
+        message: (fd.get('message') || '').trim(),
+        therapy_history: fd.get('therapy_history') || '',
+        availability: fd.getAll('availability'),
+        website: fd.get('website') || '', // honeypot
+      };
+
+      // Basic client-side guard — server validates as well
+      if (!payload.name || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(payload.email)) {
+        showError(errorBox, 'Please add a name and a valid email.');
+        restoreButton(submitBtn, originalLabel);
+        return;
+      }
+
+      let success = false;
+      let serverErr = null;
+      try {
+        const r = await fetch(RELAY_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        if (r.ok) {
+          success = true;
+        } else {
+          let body = null;
+          try { body = await r.json(); } catch (_) {}
+          serverErr = (body && body.error) || `HTTP ${r.status}`;
+        }
+      } catch (e) {
+        serverErr = 'network';
+      }
+
+      if (success) {
+        showThanks(form);
+        return;
+      }
+
+      // Fallback — give the user a one-click mailto path so the message isn't lost
+      const subject = encodeURIComponent('New application — Empowered Mind site');
+      const lines = [];
+      lines.push(`Name: ${payload.name}`);
+      lines.push(`Email: ${payload.email}`);
+      if (payload.phone) lines.push(`Phone: ${payload.phone}`);
+      if (payload.inquiry) lines.push(`Reaching out about: ${payload.inquiry}`);
+      if (payload.source) lines.push(`Heard via: ${payload.source}`);
+      if (payload.therapy_history) lines.push(`Therapy history: ${payload.therapy_history}`);
+      if (payload.availability && payload.availability.length) {
+        lines.push(`Availability: ${payload.availability.join(', ')}`);
+      }
+      if (payload.message) {
+        lines.push('');
+        lines.push('What brings you here:');
+        lines.push(payload.message);
+      }
+      const mailto = `mailto:Drtubero03@gmail.com?subject=${subject}&body=${encodeURIComponent(lines.join('\n'))}`;
+
+      showError(
+        errorBox,
+        `We couldn't reach the server (${serverErr || 'unknown'}). `,
+        { mailto, label: 'Send via your email app instead →' }
+      );
+      restoreButton(submitBtn, originalLabel);
     });
 
-    function prettyKey(k) {
-      const map = {
-        name: 'Name',
-        email: 'Email',
-        phone: 'Phone',
-        inquiry: 'Reaching out about',
-        source: 'How did you hear about Dr. Tubero',
-        message: 'What brings you here',
-        therapy_history: 'Therapy history',
-        availability: 'Availability',
-      };
-      return map[k] || k;
+    function restoreButton(btn, html) {
+      if (!btn) return;
+      btn.disabled = false;
+      if (html != null) btn.innerHTML = html;
+    }
+    function showError(box, text, link) {
+      if (!box) { alert(text); return; }
+      box.classList.add('show');
+      box.innerHTML = '';
+      box.appendChild(document.createTextNode(text));
+      if (link && link.mailto) {
+        const a = document.createElement('a');
+        a.href = link.mailto;
+        a.textContent = link.label || 'Send via email instead';
+        box.appendChild(a);
+      }
+    }
+    function showThanks(formEl) {
+      const wrap = formEl.closest('.form-wrap');
+      if (!wrap) return;
+      wrap.classList.add('submitted');
+      const thanks = wrap.querySelector('.form-thanks');
+      if (thanks) {
+        thanks.classList.add('show');
+        thanks.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
     }
   }
 
