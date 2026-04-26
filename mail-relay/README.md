@@ -23,7 +23,7 @@ Deployed on Cloud Run in the `periwink-prod` GCP project. Resend API key is moun
 ## CORS
 
 Locked to:
-- `https://zelidav.github.io`
+- `https://drtubero03.github.io`
 - `https://doctor.tubero.com` (planned)
 - `http://localhost:8000` / `http://127.0.0.1:8000` (local testing)
 

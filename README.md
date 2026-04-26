@@ -2,7 +2,7 @@
 
 Static marketing site for Dr. Adrian Tubero, Psy.D. — Core Self Reclamation Therapy (CSRT) practice and *The Midlife Shift* group for women.
 
-**Live:** https://zelidav.github.io/empowered-mind/
+**Live:** https://drtubero03.github.io/empowered-mind/
 
 ## Stack
 
@@ -65,7 +65,7 @@ Then visit http://localhost:8000.
 
 `doctor.tubero.com` — not yet wired (registrar account doesn't have `tubero.com` yet). When acquired:
 1. Drop a `CNAME` file in repo root with `doctor.tubero.com`
-2. Add a CNAME DNS record `doctor → zelidav.github.io`
+2. Add a CNAME DNS record `doctor → drtubero03.github.io`
 3. Enable HTTPS in Pages settings after the cert provisions
 
 ## Contact

@@ -23,11 +23,11 @@ Voice: contemplative, second-person, short paragraphs, italics for emphasis, pul
 
 ## Live + repo
 
-- **Live site:** https://zelidav.github.io/empowered-mind/
-- **GitHub repo:** https://github.com/zelidav/empowered-mind (public)
+- **Live site:** https://drtubero03.github.io/empowered-mind/
+- **GitHub repo:** https://github.com/drtubero03/empowered-mind (public)
 - **Default branch:** `main` (deploys via GitHub Pages on every push)
 - **Archive branches:** `v1-periwink-botanical`, `v2-ocean` — earlier design exploration; ignore for normal work
-- **Custom domain:** `doctor.tubero.com` is planned but not wired (`tubero.com` not yet on registrar). When acquired: drop a `CNAME` file with `doctor.tubero.com` in repo root, add CNAME DNS record `doctor → zelidav.github.io`, enable HTTPS in Pages settings.
+- **Custom domain:** `doctor.tubero.com` is planned but not wired (`tubero.com` not yet on registrar). When acquired: drop a `CNAME` file with `doctor.tubero.com` in repo root, add CNAME DNS record `doctor → drtubero03.github.io`, enable HTTPS in Pages settings.
 
 ---
 
@@ -165,7 +165,7 @@ The apply form POSTs to a small Flask service deployed on **Google Cloud Run** i
 | From | `Empowered Mind <noreply@cannacrypted.com>` (only verified Resend domain on Adrian's account) |
 | To | `Drtubero03@gmail.com` |
 | Reply-To | applicant's submitted email (so Adrian's reply lands with them) |
-| CORS allowlist | `https://zelidav.github.io`, `https://doctor.tubero.com` (planned), `http://localhost:8000`, `http://127.0.0.1:8000` |
+| CORS allowlist | `https://drtubero03.github.io`, `https://doctor.tubero.com` (planned), `http://localhost:8000`, `http://127.0.0.1:8000` |
 
 **Honeypot:** the apply form has a hidden `website` input. Any submission with that field populated is silently dropped (returns 200 OK to the bot, nothing sent).
 
@@ -191,7 +191,7 @@ gcloud run deploy empowered-mind-mailer \
 
 ```sh
 curl -X POST https://empowered-mind-mailer-784102208397.us-east1.run.app/apply \
-  -H "Origin: https://zelidav.github.io" \
+  -H "Origin: https://drtubero03.github.io" \
   -H "Content-Type: application/json" \
   -d '{"name":"Test","email":"you@example.com","inquiry":"group","message":"Test"}'
 ```
@@ -347,7 +347,7 @@ Easiest: temporarily change `apply.html?inquiry=group` links to `apply.html?inqu
 Just `git push`. GitHub Pages rebuilds in ~30–60 seconds. To verify it's done:
 
 ```sh
-gh api repos/zelidav/empowered-mind/pages/builds/latest --jq '{status,commit}'
+gh api repos/drtubero03/empowered-mind/pages/builds/latest --jq '{status,commit}'
 ```
 
 ---
