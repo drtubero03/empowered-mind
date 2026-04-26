@@ -23,9 +23,9 @@ jobs:
           cd mail-relay
           gcloud run deploy empowered-mind-mailer \
             --source . \
-            --project periwink-prod \
+            --project empowered-mind-prod \
             --region us-east1 \
             --allow-unauthenticated \
-            --set-secrets RESEND_API_KEY=periwink-resend-api-key:latest \
+            --set-secrets RESEND_API_KEY=resend-api-key:latest \
             --memory 256Mi --cpu 1 --max-instances 3 \
             --quiet

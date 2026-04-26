@@ -152,16 +152,16 @@ Each neutral section also has a **faint horizontal ripple** (`section.bg-*::afte
 
 ## Mail relay (Cloud Run + Resend)
 
-The apply form POSTs to a small Flask service deployed on **Google Cloud Run** in the `periwink-prod` GCP project. Source lives in `mail-relay/`.
+The apply form POSTs to a small Flask service deployed on **Google Cloud Run** in the `empowered-mind-prod` GCP project. Source lives in `mail-relay/`.
 
 | Item | Value |
 |---|---|
-| Service URL | `https://empowered-mind-mailer-784102208397.us-east1.run.app` |
+| Service URL | `https://empowered-mind-mailer-472495368361.us-east1.run.app` |
 | Endpoint | `POST /apply` (also `OPTIONS /apply` for CORS preflight, `GET /` for health) |
-| Project | `periwink-prod` |
+| Project | `empowered-mind-prod` |
 | Region | `us-east1` |
 | Image | Buildpack-built from `mail-relay/` |
-| Secrets | `RESEND_API_KEY` mounted from Secret Manager (`periwink-resend-api-key:latest`) — same secret Periwink uses |
+| Secrets | `RESEND_API_KEY` mounted from Secret Manager (`resend-api-key:latest`) |
 | From | `Empowered Mind <noreply@cannacrypted.com>` (only verified Resend domain on Adrian's account) |
 | To | `Drtubero03@gmail.com` |
 | Reply-To | applicant's submitted email (so Adrian's reply lands with them) |
@@ -179,10 +179,10 @@ The apply form POSTs to a small Flask service deployed on **Google Cloud Run** i
 cd mail-relay
 gcloud run deploy empowered-mind-mailer \
   --source . \
-  --project periwink-prod \
+  --project empowered-mind-prod \
   --region us-east1 \
   --allow-unauthenticated \
-  --set-secrets RESEND_API_KEY=periwink-resend-api-key:latest \
+  --set-secrets RESEND_API_KEY=resend-api-key:latest \
   --memory 256Mi --cpu 1 --max-instances 3 \
   --quiet
 ```
@@ -190,7 +190,7 @@ gcloud run deploy empowered-mind-mailer \
 **Test the live endpoint:**
 
 ```sh
-curl -X POST https://empowered-mind-mailer-784102208397.us-east1.run.app/apply \
+curl -X POST https://empowered-mind-mailer-472495368361.us-east1.run.app/apply \
   -H "Origin: https://drtubero03.github.io" \
   -H "Content-Type: application/json" \
   -d '{"name":"Test","email":"you@example.com","inquiry":"group","message":"Test"}'
@@ -199,7 +199,7 @@ curl -X POST https://empowered-mind-mailer-784102208397.us-east1.run.app/apply \
 **Rotate the Resend key:**
 
 ```sh
-echo -n "<new-key>" | gcloud secrets versions add periwink-resend-api-key --data-file=- --project=periwink-prod
+echo -n "<new-key>" | gcloud secrets versions add resend-api-key --data-file=- --project=empowered-mind-prod
 # Cloud Run picks up :latest on the next request — no redeploy needed
 ```
 
@@ -313,7 +313,7 @@ Find-and-replace across all HTML files:
 - Also update the `TO_EMAIL` env var on the Cloud Run service if recipient changes:
   ```sh
   gcloud run services update empowered-mind-mailer \
-    --region us-east1 --project periwink-prod \
+    --region us-east1 --project empowered-mind-prod \
     --set-env-vars TO_EMAIL=new@example.com
   ```
 
@@ -359,7 +359,7 @@ gh api repos/drtubero03/empowered-mind/pages/builds/latest --jq '{status,commit}
 - **No raster images for design texture** — only Adrian's portrait, the lotus brand mark, and Pexels blog photography. Decorative shapes are SVG or CSS gradients only.
 - **Google Pages default branch is `main`.** Don't move files into `/docs` or change the source.
 - **CORS on the mail relay must include any new origin** that hosts the apply form (e.g., when the custom domain goes live, `https://doctor.tubero.com` is already in the allowlist).
-- **The Cloud Run service is in `periwink-prod`, not its own project.** This is intentional to share the Resend key with Periwink. If isolation is ever needed, a separate project + secret would be cleanest.
+- **The Cloud Run service is in `empowered-mind-prod`** — its own GCP project under `drtubero03@gmail.com`, billing account `016CE3-7D64F1-E255F3`. Fully separate from Periwink.
 - **`hero-bg.mp4` is 3.5 MB.** Heavy on mobile — consider lazy-loading or a poster-only fallback if mobile performance becomes a concern. Currently only used on the group page hero.
 - **Date format for blog posts:** the URL slug carries no date; only the visible meta (`<p class="article-meta">`) and the index card text show the date. So renaming a date doesn't break URLs.
 - **Inquiry preselect** uses URL params, not localStorage. Refreshing apply.html with no param resets the select. Group-page CTAs are written as `apply.html?inquiry=group` — keep this pattern when adding new entry points.
@@ -388,9 +388,8 @@ When starting a session, try one of these to get oriented quickly:
 ## Contacts (for handoff)
 
 - **Adrian (practitioner):** Drtubero03@gmail.com · 917-568-7909
-- **Original developer (David):** zelidav@gmail.com (GCP project owner: david@canismajorpartners.com)
-- **GCP project owner:** `periwink-prod`, billing account `01DE45-3C37E9-1C55D8`
-- **Domain registrar:** GoDaddy (currently — `tubero.com` not yet acquired)
+- **GCP project:** `empowered-mind-prod` under `drtubero03@gmail.com`, billing account `016CE3-7D64F1-E255F3`
+- **Domain registrar:** GoDaddy — `dradriantubero.com` (active, renewed to Feb 2027)
 
 ---
 

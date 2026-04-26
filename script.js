@@ -120,7 +120,7 @@
   }
 
   /* ---- Apply form ---- */
-  const RELAY_URL = 'https://empowered-mind-mailer-784102208397.us-east1.run.app/apply';
+  const RELAY_URL = 'https://empowered-mind-mailer-472495368361.us-east1.run.app/apply';
 
   function initApplyForm() {
     const form = document.querySelector('#apply-form');
