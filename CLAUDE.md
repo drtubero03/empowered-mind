@@ -27,7 +27,7 @@ Voice: contemplative, second-person, short paragraphs, italics for emphasis, pul
 - **GitHub repo:** https://github.com/drtubero03/empowered-mind (public)
 - **Default branch:** `main` (deploys via GitHub Pages on every push)
 - **Archive branches:** `v1-periwink-botanical`, `v2-ocean` — earlier design exploration; ignore for normal work
-- **Custom domain:** `doctor.tubero.com` is planned but not wired (`tubero.com` not yet on registrar). When acquired: drop a `CNAME` file with `doctor.tubero.com` in repo root, add CNAME DNS record `doctor → drtubero03.github.io`, enable HTTPS in Pages settings.
+- **Custom domain:** `dradriantubero.com` — DNS wired (Apr 2026). CNAME file in repo root. Enable HTTPS in GitHub Pages settings once cert provisions (Settings → Pages → Enforce HTTPS).
 
 ---
 
@@ -165,7 +165,7 @@ The apply form POSTs to a small Flask service deployed on **Google Cloud Run** i
 | From | `Empowered Mind <noreply@cannacrypted.com>` (only verified Resend domain on Adrian's account) |
 | To | `Drtubero03@gmail.com` |
 | Reply-To | applicant's submitted email (so Adrian's reply lands with them) |
-| CORS allowlist | `https://drtubero03.github.io`, `https://doctor.tubero.com` (planned), `http://localhost:8000`, `http://127.0.0.1:8000` |
+| CORS allowlist | `https://drtubero03.github.io`, `https://dradriantubero.com`, `https://www.dradriantubero.com`, `http://localhost:8000`, `http://127.0.0.1:8000` |
 
 **Honeypot:** the apply form has a hidden `website` input. Any submission with that field populated is silently dropped (returns 200 OK to the bot, nothing sent).
 

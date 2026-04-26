@@ -25,7 +25,8 @@ FROM_EMAIL = os.environ.get(
 
 ALLOWED_ORIGINS = {
     "https://drtubero03.github.io",
-    "https://doctor.tubero.com",  # planned custom domain
+    "https://dradriantubero.com",
+    "https://www.dradriantubero.com",
     "http://localhost:8000",
     "http://127.0.0.1:8000",
 }
