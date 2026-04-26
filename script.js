@@ -123,6 +123,17 @@
   function initApplyForm() {
     const form = document.querySelector('#apply-form');
     if (!form) return;
+
+    // Pre-select inquiry type from `?inquiry=group|waitlist|csrt|...`
+    const params = new URLSearchParams(location.search);
+    const preset = params.get('inquiry');
+    if (preset) {
+      const sel = form.querySelector('#inquiry');
+      if (sel && Array.from(sel.options).some((o) => o.value === preset)) {
+        sel.value = preset;
+      }
+    }
+
     form.addEventListener('submit', (e) => {
       e.preventDefault();
       const data = new FormData(form);
@@ -164,6 +175,7 @@
         name: 'Name',
         email: 'Email',
         phone: 'Phone',
+        inquiry: 'Reaching out about',
         source: 'How did you hear about Dr. Tubero',
         message: 'What brings you here',
         therapy_history: 'Therapy history',
