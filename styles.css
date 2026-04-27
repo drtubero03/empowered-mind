@@ -587,6 +587,16 @@ section > * { position: relative; z-index: 1; }
 .nav-links a:not(.btn):hover::after,
 .nav-links a.active:not(.btn)::after { transform: scaleX(1); }
 
+.nav-links .btn-primary {
+  background: var(--turq);
+  color: var(--deep);
+}
+.nav-links .btn-primary:hover {
+  background: var(--turq-light);
+  color: var(--deep);
+  box-shadow: 0 8px 20px rgba(91,184,181,0.30);
+}
+
 .mobile-menu-btn {
   display: none;
   width: 44px; height: 44px;
