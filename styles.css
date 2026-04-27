@@ -246,7 +246,7 @@ section > * { position: relative; z-index: 1; }
 .bg-teal .eyebrow { color: var(--sky-pink); }
 
 .bg-dark {
-  background: linear-gradient(180deg, var(--deep) 0%, #0F2330 100%);
+  background: linear-gradient(180deg, #1B5F5C 0%, #164E4B 100%);
   color: var(--white);
 }
 .bg-dark h1, .bg-dark h2, .bg-dark h3, .bg-dark h4 { color: var(--white); }
@@ -1282,7 +1282,7 @@ section > * { position: relative; z-index: 1; }
 /* ---------- Footer ---------- */
 
 footer {
-  background: var(--deep);
+  background: #1B5F5C;
   color: rgba(255,255,255,0.78);
   padding: 4rem 0 2rem;
 }
