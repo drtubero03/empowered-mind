@@ -8,14 +8,14 @@
         Two-color discipline: warm sand neutrals + clear turquoise as the
         accent. Pinks/corals dropped; slate blue dropped; everything else
         ladders off these two families. ── */
-  --bg:           #F6EFE3;     /* warm sand wash */
-  --bg-soft:      #EBDFCB;
-  --bg-warm:      #F2E5CD;     /* sun-warmed sand */
+  --bg:           #ECEAE6;     /* cool stone wash */
+  --bg-soft:      #DDE3E3;     /* sea glass */
+  --bg-warm:      #E4E8E8;     /* mist */
 
-  --sand:         #DCC8AC;     /* primary sand */
-  --sand-soft:    #EFE2C8;
-  --sand-deep:    #B69874;     /* toasted sand */
-  --sand-shadow:  #8C7558;
+  --sand:         #B8C8C8;     /* stone teal */
+  --sand-soft:    #D8E4E4;
+  --sand-deep:    #7A9898;
+  --sand-shadow:  #557575;
 
   --turq-pale:    #DEF1EE;     /* foamy turquoise wash */
   --turq-light:   #A8DBD6;
@@ -40,11 +40,11 @@
   --mauve:        var(--sand-deep);
   --mauve-soft:   var(--sand-soft);
 
-  --deep:         #163A40;     /* deep ocean ink — slight teal cast */
-  --light-text:   #5A6B6E;
-  --muted:        #9C9180;
+  --deep:         #0F2B32;     /* deep ocean ink — cool navy */
+  --light-text:   #4A5C60;
+  --muted:        #7A8E8E;
   --white:        #FFFFFF;
-  --border:       #DCCFB8;
+  --border:       #C8D4D4;
 
   --serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
   --sans:  'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
@@ -327,7 +327,7 @@ section > * { position: relative; z-index: 1; }
   border-bottom: 1px solid transparent;
 }
 .nav.scrolled {
-  background: rgba(248,245,240,0.85);
+  background: rgba(236,234,230,0.85);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
   padding: 0.6rem 0;
@@ -609,7 +609,7 @@ section > * { position: relative; z-index: 1; }
     align-items: stretch;
     gap: 0;
     padding: 1rem 0;
-    background: rgba(248,245,240,0.97);
+    background: rgba(236,234,230,0.97);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border);
@@ -692,8 +692,8 @@ section > * { position: relative; z-index: 1; }
 .hero-overlay {
   position: absolute; inset: 0; z-index: 1;
   background:
-    linear-gradient(180deg, rgba(246,239,227,0.30) 0%, rgba(91,184,181,0.15) 35%, rgba(22,58,64,0.65) 100%),
-    radial-gradient(ellipse at 50% 20%, rgba(91,184,181,0.20), transparent 60%);
+    linear-gradient(180deg, rgba(15,43,50,0.20) 0%, rgba(61,140,136,0.10) 35%, rgba(10,28,34,0.76) 100%),
+    radial-gradient(ellipse at 50% 20%, rgba(61,140,136,0.15), transparent 60%);
   pointer-events: none;
 }
 
