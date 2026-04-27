@@ -273,14 +273,14 @@ section > * { position: relative; z-index: 1; }
 .btn:hover svg { transform: translateX(3px); }
 
 .btn-primary {
-  background: var(--teal-deep);
+  background: var(--teal-dark);
   color: var(--white);
 }
 .btn-primary:hover {
-  background: var(--teal-dark);
+  background: var(--deep);
   color: var(--white);
   transform: translateY(-2px);
-  box-shadow: 0 12px 28px rgba(46,139,135,0.32);
+  box-shadow: 0 12px 28px rgba(27,95,92,0.35);
 }
 
 .btn-outline {
@@ -308,7 +308,7 @@ section > * { position: relative; z-index: 1; }
 
 .btn-ghost {
   padding: 0.5rem 0;
-  color: var(--teal-deep);
+  color: var(--teal-dark);
   font-weight: 500;
   font-size: 0.95rem;
 }
