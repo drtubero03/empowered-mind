@@ -915,7 +915,7 @@ section > * { position: relative; z-index: 1; }
 .chip-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 0.85rem;
+  gap: 1.1rem;
 }
 @media (min-width: 760px) { .chip-grid { grid-template-columns: repeat(3, 1fr); } }
 @media (max-width: 540px) { .chip-grid { grid-template-columns: 1fr; } }
@@ -925,7 +925,7 @@ section > * { position: relative; z-index: 1; }
   background: var(--white);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 1.1rem 1.25rem;
+  padding: 1.3rem 1.5rem;
   font-size: 0.97rem;
   color: var(--deep);
   transition: transform .3s var(--ease), border-color .3s var(--ease), box-shadow .3s var(--ease);
