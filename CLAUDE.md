@@ -77,28 +77,28 @@ empowered-mind/
 
 ## Design system
 
-### Palette (sand + turquoise — two-color discipline)
+### Palette (sea glass + deep teal — muted editorial)
 
-Defined in `:root` of `styles.css`. **Don't introduce other colors** — pinks, slate blue, mauve coral are deliberately absent. Old shared rule names (`--mauve`, `--sky-pink`, `--sage`, `--teal`) are aliased to sand/turquoise tones so existing rules still pick up palette colors.
+Defined in `:root` of `styles.css`. **Don't introduce other colors.** Turquoise saturation was deliberately reduced ~25% from original to feel quieter, more sea glass than wellness-spa. Old shared rule names (`--mauve`, `--sky-pink`, `--sage`, `--teal`) are aliased to the sea glass tones so existing rules still pick up palette colors.
 
 | Token | Hex | Use |
 |---|---|---|
-| `--bg` | `#F6EFE3` | warm sand wash background |
-| `--bg-soft` | `#EBDFCB` | slightly darker section background |
-| `--bg-warm` | `#F2E5CD` | sun-warmed sand |
-| `--sand` | `#DCC8AC` | primary sand |
-| `--sand-soft` | `#EFE2C8` | foam-pale sand |
-| `--sand-deep` | `#B69874` | toasted sand |
-| `--sand-shadow` | `#8C7558` | deep sand shadow |
-| `--turq-pale` | `#DEF1EE` | foamy turquoise wash |
-| `--turq-light` | `#A8DBD6` | light turquoise |
-| `--turq` | `#5BB8B5` | primary turquoise |
-| `--turq-deep` | `#2E8B87` | deeper turquoise |
-| `--turq-dark` | `#1B5F5C` | deepest turquoise |
-| `--deep` | `#163A40` | deep ocean ink (dark text + dark CTA bg) |
-| `--light-text` | `#5A6B6E` | body text |
-| `--muted` | `#9C9180` | subtle/secondary text |
-| `--border` | `#DCCFB8` | borders & dividers |
+| `--bg` | `#F0EBE4` | warm ivory linen background |
+| `--bg-soft` | `#E1E7E6` | sea glass mist section bg |
+| `--bg-warm` | `#EAE3DC` | warm ivory section bg |
+| `--sand` | `#BEC9C9` | muted stone |
+| `--sand-soft` | `#D5E2E1` | pale sea glass foam |
+| `--sand-deep` | `#7A9898` | slate teal |
+| `--sand-shadow` | `#557575` | deep shadow |
+| `--turq-pale` | `#DEECEA` | barely-there sea glass |
+| `--turq-light` | `#9CC4C1` | muted sea glass |
+| `--turq` | `#57A3A0` | primary sea glass |
+| `--turq-deep` | `#2A7875` | deeper sea glass |
+| `--turq-dark` | `#1A5754` | deepest sea glass |
+| `--deep` | `#0F2B32` | deep ocean ink (dark text + dark CTA bg) |
+| `--light-text` | `#4A5C60` | body text |
+| `--muted` | `#7A8E8E` | subtle/secondary text |
+| `--border` | `#C5CFCF` | borders & dividers |
 
 ### Section background variants
 

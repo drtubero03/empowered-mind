@@ -18,6 +18,7 @@
     initActiveNav();
     initHeroVideo();
     initFoamParticles();
+    initTestimonialCarousel();
   });
 
   /* ---- Nav scroll state ---- */
@@ -279,6 +280,59 @@
       f.style.opacity = 0.3 + Math.random() * 0.5;
       host.appendChild(f);
     }
+  }
+
+  /* ---- Testimonial carousel ---- */
+  function initTestimonialCarousel() {
+    const carousel = document.querySelector('.testimonial-carousel');
+    const dotsEl = document.getElementById('testimonialDots');
+    if (!carousel || !dotsEl) return;
+    const items = carousel.querySelectorAll('.testimonial-item');
+    if (items.length < 2) return;
+
+    let current = 0;
+    let timer;
+
+    // Measure tallest item to lock container height
+    let maxH = 0;
+    items.forEach(function (item) {
+      item.style.position = 'relative';
+      item.style.opacity = '1';
+      maxH = Math.max(maxH, item.offsetHeight);
+      item.style.position = 'absolute';
+      item.style.opacity = '0';
+    });
+    carousel.style.minHeight = maxH + 'px';
+    items[0].style.opacity = '1';
+
+    // Build nav dots
+    items.forEach(function (_, i) {
+      const dot = document.createElement('button');
+      dot.className = 'testimonial-dot' + (i === 0 ? ' active' : '');
+      dot.setAttribute('aria-label', 'Testimonial ' + (i + 1));
+      dot.addEventListener('click', function () { goTo(i); resetTimer(); });
+      dotsEl.appendChild(dot);
+    });
+    const dots = dotsEl.querySelectorAll('.testimonial-dot');
+
+    function goTo(n) {
+      items[current].style.opacity = '0';
+      items[current].style.pointerEvents = 'none';
+      dots[current].classList.remove('active');
+      current = n;
+      items[current].style.opacity = '1';
+      items[current].style.pointerEvents = 'auto';
+      dots[current].classList.add('active');
+    }
+
+    function resetTimer() {
+      clearInterval(timer);
+      timer = setInterval(function () { goTo((current + 1) % items.length); }, 5500);
+    }
+
+    resetTimer();
+    carousel.addEventListener('mouseenter', function () { clearInterval(timer); });
+    carousel.addEventListener('mouseleave', function () { resetTimer(); });
   }
 
   /* ---- Active nav link ---- */
