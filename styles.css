@@ -297,8 +297,8 @@ section > * { position: relative; z-index: 1; }
 
 .hero .btn-outline {
   color: var(--white);
-  border-color: rgba(255,255,255,0.80);
-  background: rgba(255,255,255,0.10);
+  border-color: rgba(255,255,255,0.92);
+  background: rgba(10,22,28,0.32);
 }
 .hero .btn-outline:hover {
   background: var(--white);
@@ -709,14 +709,14 @@ section > * { position: relative; z-index: 1; }
   position: absolute; inset: 0; width: 100%; height: 100%;
   object-fit: cover; z-index: 0;
   opacity: 0; transition: opacity 1.4s var(--ease);
-  filter: saturate(0.85) brightness(1.06);
+  filter: sepia(0.06) saturate(0.80) brightness(1.12);
 }
 .hero-video.loaded { opacity: 1; }
 /* Atmospheric tint over the video for legibility */
 .hero-overlay {
   position: absolute; inset: 0; z-index: 1;
   background:
-    linear-gradient(180deg, rgba(15,43,50,0.06) 0%, rgba(15,43,50,0.00) 30%, rgba(10,26,32,0.58) 100%);
+    linear-gradient(180deg, rgba(18,12,6,0.04) 0%, rgba(18,12,6,0.00) 28%, rgba(10,20,24,0.50) 100%);
   pointer-events: none;
 }
 
@@ -1298,43 +1298,52 @@ section > * { position: relative; z-index: 1; }
 
 .testimonials { padding: 5.5rem 0; }
 
-.quote-grid {
+.testimonial-cards {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem 4.5rem;
-  max-width: 860px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
   margin: 2.5rem auto 0;
-  text-align: left;
 }
 
-.quote-block {
-  border-left: 1px solid var(--border);
-  padding-left: 1.75rem;
+.testimonial-card {
+  background: var(--bg-warm);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 2rem 1.75rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.quote-block p {
+.testimonial-card p {
   font-family: var(--serif);
   font-style: italic;
-  font-size: clamp(1rem, 1.75vw, 1.18rem);
+  font-size: clamp(0.98rem, 1.5vw, 1.08rem);
   font-weight: 300;
-  line-height: 1.7;
+  line-height: 1.68;
   color: var(--deep);
   margin: 0;
+  flex: 1;
 }
 
 .quote-attr {
   font-family: var(--sans);
-  font-size: 0.72rem;
+  font-size: 0.70rem;
   font-weight: 400;
-  letter-spacing: 0.09em;
+  letter-spacing: 0.10em;
   text-transform: uppercase;
   color: var(--muted);
-  margin-top: 1rem;
+  margin-top: 1.25rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--border);
   display: block;
 }
 
-@media (max-width: 680px) {
-  .quote-grid { grid-template-columns: 1fr; gap: 2.25rem; }
+@media (max-width: 900px) {
+  .testimonial-cards { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 520px) {
+  .testimonial-cards { grid-template-columns: 1fr; }
 }
 
 /* ---------- Footer ---------- */
