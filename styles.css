@@ -458,18 +458,20 @@ section > * { position: relative; z-index: 1; }
   color: var(--turq-deep); margin-bottom: 0.45rem; font-weight: 500;
 }
 .blog-entry h3 {
-  font-family: var(--serif); font-size: 1.45rem; font-weight: 400;
-  margin-bottom: 0.5rem; color: var(--deep);
+  font-family: var(--serif); font-size: 1.55rem; font-weight: 400;
+  margin: 0.65rem 0 0.5rem; color: var(--deep);
   line-height: 1.25;
 }
-.blog-entry .blog-excerpt { color: var(--light-text); font-size: 0.96rem; line-height: 1.55; }
+.blog-entry .blog-excerpt { color: var(--light-text); font-size: 0.96rem; line-height: 1.58; }
 .blog-entry .blog-cta {
-  display: inline-flex; align-items: center; gap: 0.4rem;
-  margin-top: 0.7rem;
-  font-size: 0.85rem; font-weight: 500; color: var(--turq-deep);
+  display: inline-flex; align-items: center; gap: 0.45rem;
+  margin-top: 0.85rem;
+  font-size: 0.82rem; font-weight: 400; letter-spacing: 0.06em;
+  color: var(--turq-deep); opacity: 0.80;
 }
-.blog-entry .blog-cta svg { width: 13px; height: 13px; transition: transform .25s var(--ease); }
-.blog-entry:hover .blog-cta svg { transform: translateX(3px); }
+.blog-entry .blog-cta svg { width: 12px; height: 12px; transition: transform .25s var(--ease); }
+.blog-entry:hover .blog-cta { opacity: 1; }
+.blog-entry:hover .blog-cta svg { transform: translateX(4px); }
 
 /* Article hero image (top of post pages) */
 .article-hero {
@@ -707,14 +709,14 @@ section > * { position: relative; z-index: 1; }
   position: absolute; inset: 0; width: 100%; height: 100%;
   object-fit: cover; z-index: 0;
   opacity: 0; transition: opacity 1.4s var(--ease);
-  filter: saturate(0.72) brightness(0.88);
+  filter: saturate(0.85) brightness(1.06);
 }
 .hero-video.loaded { opacity: 1; }
 /* Atmospheric tint over the video for legibility */
 .hero-overlay {
   position: absolute; inset: 0; z-index: 1;
   background:
-    linear-gradient(180deg, rgba(15,43,50,0.22) 0%, rgba(15,43,50,0.04) 40%, rgba(10,26,32,0.82) 100%);
+    linear-gradient(180deg, rgba(15,43,50,0.06) 0%, rgba(15,43,50,0.00) 30%, rgba(10,26,32,0.58) 100%);
   pointer-events: none;
 }
 
@@ -1294,74 +1296,51 @@ section > * { position: relative; z-index: 1; }
 
 /* ---------- Testimonial carousel ---------- */
 
-.testimonials { padding: 5rem 0; }
+.testimonials { padding: 5.5rem 0; }
 
-.testimonial-carousel {
-  position: relative;
-  max-width: 600px;
-  margin: 1.5rem auto 2rem;
-  min-height: 200px;
+.quote-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem 4.5rem;
+  max-width: 860px;
+  margin: 2.5rem auto 0;
+  text-align: left;
 }
 
-.testimonial-item {
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  opacity: 0;
-  transition: opacity 0.9s ease;
-  pointer-events: none;
-}
-.testimonial-item:first-child {
-  opacity: 1;
-  pointer-events: auto;
+.quote-block {
+  border-left: 1px solid var(--border);
+  padding-left: 1.75rem;
 }
 
-.testimonial-item p {
+.quote-block p {
   font-family: var(--serif);
   font-style: italic;
-  font-size: clamp(1.12rem, 2.2vw, 1.5rem);
+  font-size: clamp(1rem, 1.75vw, 1.18rem);
   font-weight: 300;
-  line-height: 1.65;
+  line-height: 1.7;
   color: var(--deep);
-  text-align: center;
   margin: 0;
 }
 
-.testimonial-item .testimonial-attr {
+.quote-attr {
   font-family: var(--sans);
-  font-style: normal;
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 400;
-  letter-spacing: 0.07em;
+  letter-spacing: 0.09em;
   text-transform: uppercase;
   color: var(--muted);
-  margin-top: 1.25rem;
+  margin-top: 1rem;
+  display: block;
 }
 
-.testimonial-dots {
-  display: flex;
-  justify-content: center;
-  gap: 0.7rem;
-  margin-top: 2.25rem;
-}
-
-.testimonial-dot {
-  width: 5px; height: 5px;
-  border-radius: 50%;
-  background: var(--border);
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  transition: background 0.3s ease, transform 0.3s ease;
-}
-.testimonial-dot.active {
-  background: var(--sand-deep);
-  transform: scale(1.4);
+@media (max-width: 680px) {
+  .quote-grid { grid-template-columns: 1fr; gap: 2.25rem; }
 }
 
 /* ---------- Footer ---------- */
 
 footer {
-  background: #163535;
+  background: #2A5452;
   color: rgba(255,255,255,0.80);
   padding: 4rem 0 2rem;
 }
