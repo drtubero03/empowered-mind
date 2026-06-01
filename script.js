@@ -293,18 +293,6 @@
     let current = 0;
     let timer;
 
-    // Measure tallest item to lock container height
-    let maxH = 0;
-    items.forEach(function (item) {
-      item.style.position = 'relative';
-      item.style.opacity = '1';
-      maxH = Math.max(maxH, item.offsetHeight);
-      item.style.position = 'absolute';
-      item.style.opacity = '0';
-    });
-    carousel.style.minHeight = maxH + 'px';
-    items[0].style.opacity = '1';
-
     // Build nav dots
     items.forEach(function (_, i) {
       const dot = document.createElement('button');
@@ -328,6 +316,27 @@
     function resetTimer() {
       clearInterval(timer);
       timer = setInterval(function () { goTo((current + 1) % items.length); }, 5500);
+    }
+
+    // Measure tallest item after fonts load so Cormorant Garamond is in use
+    function measureAndLock() {
+      var maxH = 0;
+      items.forEach(function (item) {
+        item.style.position = 'relative';
+        item.style.opacity = '1';
+        maxH = Math.max(maxH, item.offsetHeight);
+        item.style.position = 'absolute';
+        item.style.opacity = '0';
+      });
+      if (maxH > 0) carousel.style.minHeight = maxH + 'px';
+      items[current].style.opacity = '1';
+      items[current].style.pointerEvents = 'auto';
+    }
+
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(measureAndLock);
+    } else {
+      measureAndLock();
     }
 
     resetTimer();

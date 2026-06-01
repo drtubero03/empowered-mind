@@ -9,19 +9,19 @@
         blue-grey (away from Caribbean teal) for a more grounded, psychologically
         sophisticated coastal feel. No pink; sky tones are warm ivory haze. ── */
   --bg:           #F0EBE4;     /* warm ivory linen */
-  --bg-soft:      #DDE3E3;     /* coastal stone mist */
+  --bg-soft:      #D8DCDB;     /* coastal stone — neutral warm grey */
   --bg-warm:      #EAE3DC;     /* warm ivory */
 
-  --sand:         #B8C2C4;     /* coastal fog stone */
-  --sand-soft:    #CDD8DA;     /* pale coastal mist */
-  --sand-deep:    #698A8D;     /* slate teal-grey */
-  --sand-shadow:  #486063;     /* deep slate */
+  --sand:         #B5BBBA;     /* muted fog stone */
+  --sand-soft:    #CBD5D4;     /* pale coastal mist */
+  --sand-deep:    #668182;     /* slate grey-teal */
+  --sand-shadow:  #435D5F;     /* deep slate */
 
-  --turq-pale:    #CFDFE1;     /* Atlantic coastal mist */
-  --turq-light:   #7DADB0;     /* muted Atlantic slate */
-  --turq:         #4A8285;     /* primary Atlantic teal — grounded, deeper */
-  --turq-deep:    #225E62;     /* deep harbor */
-  --turq-dark:    #154444;     /* dark Atlantic depth */
+  --turq-pale:    #C7D5D7;     /* Atlantic coastal mist — quieter */
+  --turq-light:   #7AA3A5;     /* muted Atlantic slate */
+  --turq:         #4C7C7E;     /* primary Atlantic teal — grounded */
+  --turq-deep:    #245658;     /* deep harbor */
+  --turq-dark:    #163C3C;     /* dark Atlantic depth */
 
   /* Aliases so shared rules (.bg-teal, .bg-sage, .mauve usage) still pick up
      palette colors instead of reverting to old pinks/blues. */
@@ -41,10 +41,10 @@
   --mauve-soft:   var(--sand-soft);
 
   --deep:         #0F2B32;     /* deep ocean ink — cool navy */
-  --light-text:   #485A5D;     /* slightly warmer body text */
-  --muted:        #788A8D;     /* subtle/secondary */
+  --light-text:   #475859;     /* body text */
+  --muted:        #758485;     /* subtle/secondary */
   --white:        #FFFFFF;
-  --border:       #C2CCCC;     /* coastal stone border */
+  --border:       #BBC8C7;     /* coastal stone border */
 
   --serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
   --sans:  'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
@@ -239,7 +239,7 @@ section > * { position: relative; z-index: 1; }
 .tide-glyph svg path { stroke: var(--teal); fill: none; stroke-width: 2; stroke-linecap: round; }
 
 .bg-teal {
-  background: linear-gradient(160deg, #3C6E70 0%, #1C4C4E 100%);
+  background: linear-gradient(160deg, #3A6768 0%, #1A4647 100%);
   color: var(--white);
 }
 .bg-teal h1, .bg-teal h2, .bg-teal h3, .bg-teal h4 { color: var(--white); }
@@ -247,7 +247,7 @@ section > * { position: relative; z-index: 1; }
 .bg-teal .eyebrow { color: var(--sky-pink); }
 
 .bg-dark {
-  background: linear-gradient(180deg, #154444 0%, #0E2E2E 100%);
+  background: linear-gradient(180deg, #163C3C 0%, #0F2B2B 100%);
   color: var(--white);
 }
 .bg-dark h1, .bg-dark h2, .bg-dark h3, .bg-dark h4 { color: var(--white); }
@@ -295,13 +295,21 @@ section > * { position: relative; z-index: 1; }
   transform: translateY(-2px);
 }
 
-.hero .btn-outline,
+.hero .btn-outline {
+  color: var(--white);
+  border-color: rgba(255,255,255,0.80);
+  background: rgba(255,255,255,0.10);
+}
+.hero .btn-outline:hover {
+  background: var(--white);
+  color: var(--deep);
+  border-color: var(--white);
+}
 .bg-teal .btn-outline,
 .bg-dark .btn-outline {
   color: var(--white);
-  border-color: rgba(255,255,255,0.65);
+  border-color: rgba(255,255,255,0.55);
 }
-.hero .btn-outline:hover,
 .bg-teal .btn-outline:hover,
 .bg-dark .btn-outline:hover {
   background: var(--white);
@@ -361,37 +369,35 @@ section > * { position: relative; z-index: 1; }
 .portrait-frame {
   position: relative;
   display: inline-block;
-  border-radius: 14px;
+  border-radius: 6px;
   width: 100%;
   max-width: 360px;
 }
 .portrait-frame img {
   display: block;
   width: 100%;
-  border-radius: 14px;
+  border-radius: 6px;
   position: relative; z-index: 2;
-  box-shadow: 0 24px 50px rgba(22,58,64,0.18);
-  border: 4px solid var(--white);
-  outline: 1px solid var(--border);
-  outline-offset: 2px;
+  box-shadow: 0 20px 50px rgba(15,43,50,0.16);
+  border: 3px solid var(--white);
 }
 .portrait-frame::before {
   content: '';
   position: absolute;
-  top: -10px; left: -10px; right: 12px; bottom: 12px;
+  top: -8px; left: -8px; right: 10px; bottom: 10px;
   background: var(--turq-pale);
-  border-radius: 14px;
+  border-radius: 6px;
   z-index: 1;
-  opacity: 0.65;
+  opacity: 0.42;
 }
 .portrait-frame::after {
   content: '';
   position: absolute;
-  top: 12px; left: 12px; right: -10px; bottom: -10px;
+  top: 10px; left: 10px; right: -8px; bottom: -8px;
   border: 1px solid var(--sand-deep);
-  border-radius: 14px;
+  border-radius: 6px;
   z-index: 0;
-  opacity: 0.35;
+  opacity: 0.25;
 }
 
 /* Blog index — card grid with thumbnails */
@@ -765,6 +771,7 @@ section > * { position: relative; z-index: 1; }
 }
 .hero-sub-page h1 { font-size: clamp(2.3rem, 4.5vw, 3.4rem); margin-bottom: 0.85rem; }
 .hero-sub-page .hero-sub { font-size: 1.05rem; }
+.hero-sub-page .hero-video { filter: saturate(0.65) brightness(0.98); }
 
 /* ---------- Animated waves ---------- */
 .waves {
@@ -874,35 +881,35 @@ section > * { position: relative; z-index: 1; }
 
 /* ---------- Cards (approach / features / what we work with) ---------- */
 
-.card-grid { gap: 1.25rem; }
+.card-grid { gap: 1.5rem; }
 
 .card {
   background: var(--white);
   border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 2rem 1.75rem;
+  border-radius: 4px;
+  padding: 2.25rem 2rem;
   position: relative;
   overflow: hidden;
+  box-shadow: 0 2px 14px rgba(15,43,50,0.05);
   transition: transform .35s var(--ease), box-shadow .35s var(--ease), border-color .35s var(--ease);
 }
 .card::before {
   content: '';
   position: absolute; top: 0; left: 0; right: 0;
-  height: 3px;
+  height: 2px;
   background: var(--teal);
-  border-radius: var(--radius) var(--radius) 0 0;
-  opacity: 0.85;
+  opacity: 0.75;
 }
 .card.accent-teal::before  { background: var(--teal-deep); }
 .card.accent-mauve::before { background: var(--mauve); }
 .card.accent-slate::before { background: var(--slate); }
 .card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 16px 40px rgba(15,43,50,0.07);
-  border-color: rgba(122,152,152,0.30);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(15,43,50,0.08);
+  border-color: rgba(108,136,136,0.28);
 }
-.card h3 { margin-bottom: 0.5rem; }
-.card p  { font-size: 0.97rem; color: var(--light-text); }
+.card h3 { margin-bottom: 0.65rem; }
+.card p  { font-size: 0.97rem; line-height: 1.7; color: var(--light-text); }
 
 /* Soft chip-card variant for "what we can work through" grid */
 .chip-grid {
@@ -948,7 +955,7 @@ section > * { position: relative; z-index: 1; }
 @media (max-width: 860px) { .list-section { grid-template-columns: 1fr; gap: 2.25rem; } }
 
 .col h3 { margin-bottom: 1rem; }
-.col h4 { margin-top: 1.5rem; margin-bottom: 0.65rem; color: var(--light-text); font-weight: 500; font-size: 0.95rem; }
+.col h4 { margin-top: 2rem; margin-bottom: 0.75rem; color: var(--deep); font-weight: 400; font-size: clamp(1.1rem, 1.8vw, 1.3rem); }
 .col ul {
   list-style: none;
   padding: 0;
@@ -1293,6 +1300,7 @@ section > * { position: relative; z-index: 1; }
   position: relative;
   max-width: 600px;
   margin: 1.5rem auto 2rem;
+  min-height: 200px;
 }
 
 .testimonial-item {
@@ -1301,6 +1309,10 @@ section > * { position: relative; z-index: 1; }
   opacity: 0;
   transition: opacity 0.9s ease;
   pointer-events: none;
+}
+.testimonial-item:first-child {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .testimonial-item p {
@@ -1349,8 +1361,8 @@ section > * { position: relative; z-index: 1; }
 /* ---------- Footer ---------- */
 
 footer {
-  background: #0E2E2E;
-  color: rgba(255,255,255,0.78);
+  background: #163535;
+  color: rgba(255,255,255,0.80);
   padding: 4rem 0 2rem;
 }
 footer h4 {
