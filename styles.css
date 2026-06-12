@@ -1556,6 +1556,16 @@ footer h4 {
 .fade-up.delay-4 { transition-delay: 0.32s; }
 .fade-up.delay-5 { transition-delay: 0.40s; }
 
+/* ---------- Mobile section spacing ---------- */
+@media (max-width: 600px) {
+  section { padding: 4.5rem 0; }
+  section.compact { padding: 3rem 0; }
+  .hero-sub-page { min-height: 46vh; padding: 5.5rem 0 3rem; }
+  .hero-sub-page h1 { font-size: clamp(1.9rem, 7vw, 2.8rem); }
+  .testimonial-block { padding: 2rem 0; }
+  .group-testimonial-grid { gap: 1.25rem; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
