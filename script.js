@@ -284,64 +284,47 @@
 
   /* ---- Testimonial carousel ---- */
   function initTestimonialCarousel() {
-    const carousel = document.querySelector('.testimonial-carousel');
-    const dotsEl = document.getElementById('testimonialDots');
-    if (!carousel || !dotsEl) return;
-    const items = carousel.querySelectorAll('.testimonial-item');
-    if (items.length < 2) return;
+    const track = document.querySelector('.tcarousel-track');
+    if (!track) return;
+    const cards = Array.from(track.querySelectorAll('.testimonial-card'));
+    if (cards.length < 2) return;
+    const prevBtn = document.querySelector('.tcarousel-prev');
+    const nextBtn = document.querySelector('.tcarousel-next');
+    if (!prevBtn || !nextBtn) return;
 
     let current = 0;
-    let timer;
 
-    // Build nav dots
-    items.forEach(function (_, i) {
-      const dot = document.createElement('button');
-      dot.className = 'testimonial-dot' + (i === 0 ? ' active' : '');
-      dot.setAttribute('aria-label', 'Testimonial ' + (i + 1));
-      dot.addEventListener('click', function () { goTo(i); resetTimer(); });
-      dotsEl.appendChild(dot);
+    function perView() {
+      if (window.innerWidth < 560) return 1;
+      if (window.innerWidth < 900) return 2;
+      return 3;
+    }
+
+    function update() {
+      const pv = perView();
+      const max = Math.max(0, cards.length - pv);
+      current = Math.max(0, Math.min(current, max));
+      const gap = parseFloat(getComputedStyle(track).gap) || 24;
+      const shift = current * (cards[0].offsetWidth + gap);
+      track.style.transform = 'translateX(-' + shift + 'px)';
+      prevBtn.disabled = current === 0;
+      nextBtn.disabled = current >= max;
+    }
+
+    prevBtn.addEventListener('click', function () { current = Math.max(0, current - 1); update(); });
+    nextBtn.addEventListener('click', function () {
+      const max = Math.max(0, cards.length - perView());
+      current = Math.min(max, current + 1);
+      update();
     });
-    const dots = dotsEl.querySelectorAll('.testimonial-dot');
 
-    function goTo(n) {
-      items[current].style.opacity = '0';
-      items[current].style.pointerEvents = 'none';
-      dots[current].classList.remove('active');
-      current = n;
-      items[current].style.opacity = '1';
-      items[current].style.pointerEvents = 'auto';
-      dots[current].classList.add('active');
-    }
+    let resizeTimer;
+    window.addEventListener('resize', function () {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(update, 80);
+    });
 
-    function resetTimer() {
-      clearInterval(timer);
-      timer = setInterval(function () { goTo((current + 1) % items.length); }, 5500);
-    }
-
-    // Measure tallest item after fonts load so Cormorant Garamond is in use
-    function measureAndLock() {
-      var maxH = 0;
-      items.forEach(function (item) {
-        item.style.position = 'relative';
-        item.style.opacity = '1';
-        maxH = Math.max(maxH, item.offsetHeight);
-        item.style.position = 'absolute';
-        item.style.opacity = '0';
-      });
-      if (maxH > 0) carousel.style.minHeight = maxH + 'px';
-      items[current].style.opacity = '1';
-      items[current].style.pointerEvents = 'auto';
-    }
-
-    if (document.fonts && document.fonts.ready) {
-      document.fonts.ready.then(measureAndLock);
-    } else {
-      measureAndLock();
-    }
-
-    resetTimer();
-    carousel.addEventListener('mouseenter', function () { clearInterval(timer); });
-    carousel.addEventListener('mouseleave', function () { resetTimer(); });
+    update();
   }
 
   /* ---- Active nav link ---- */

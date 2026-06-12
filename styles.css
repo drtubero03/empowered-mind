@@ -247,7 +247,7 @@ section > * { position: relative; z-index: 1; }
 .bg-teal .eyebrow { color: var(--sky-pink); }
 
 .bg-dark {
-  background: linear-gradient(180deg, #163C3C 0%, #0F2B2B 100%);
+  background: linear-gradient(180deg, #1C4848 0%, #173E3E 100%);
   color: var(--white);
 }
 .bg-dark h1, .bg-dark h2, .bg-dark h3, .bg-dark h4 { color: var(--white); }
@@ -296,9 +296,9 @@ section > * { position: relative; z-index: 1; }
 }
 
 .hero .btn-outline {
-  color: var(--white);
-  border-color: rgba(255,255,255,0.92);
-  background: rgba(10,22,28,0.32);
+  color: rgba(255,248,228,0.97);
+  border-color: rgba(255,244,216,0.72);
+  background: rgba(8,18,24,0.42);
 }
 .hero .btn-outline:hover {
   background: var(--white);
@@ -716,6 +716,7 @@ section > * { position: relative; z-index: 1; }
 .hero-overlay {
   position: absolute; inset: 0; z-index: 1;
   background:
+    linear-gradient(to right, rgba(8,16,22,0.07) 0%, rgba(8,16,22,0.03) 55%, transparent 78%),
     linear-gradient(180deg, rgba(18,12,6,0.04) 0%, rgba(18,12,6,0.00) 28%, rgba(10,20,24,0.50) 100%);
   pointer-events: none;
 }
@@ -773,7 +774,7 @@ section > * { position: relative; z-index: 1; }
 }
 .hero-sub-page h1 { font-size: clamp(2.3rem, 4.5vw, 3.4rem); margin-bottom: 0.85rem; }
 .hero-sub-page .hero-sub { font-size: 1.05rem; }
-.hero-sub-page .hero-video { filter: saturate(0.65) brightness(0.98); }
+.hero-sub-page .hero-video { filter: saturate(0.55) brightness(1.14) sepia(0.05); }
 
 /* ---------- Animated waves ---------- */
 .waves {
@@ -900,7 +901,7 @@ section > * { position: relative; z-index: 1; }
   position: absolute; top: 0; left: 0; right: 0;
   height: 2px;
   background: var(--teal);
-  opacity: 0.75;
+  opacity: 0.55;
 }
 .card.accent-teal::before  { background: var(--teal-deep); }
 .card.accent-mauve::before { background: var(--mauve); }
@@ -1298,14 +1299,26 @@ section > * { position: relative; z-index: 1; }
 
 .testimonials { padding: 5.5rem 0; }
 
-.testimonial-cards {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
-  margin: 2.5rem auto 0;
+.tcarousel-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 2.5rem 0 0;
 }
-
+.tcarousel-viewport {
+  overflow: hidden;
+  flex: 1;
+  min-width: 0;
+}
+.tcarousel-track {
+  display: flex;
+  gap: 1.5rem;
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
 .testimonial-card {
+  flex: 0 0 calc(33.333% - 1rem);
   background: var(--bg-warm);
   border: 1px solid var(--border);
   border-radius: 8px;
@@ -1313,19 +1326,18 @@ section > * { position: relative; z-index: 1; }
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  min-width: 0;
 }
-
 .testimonial-card p {
   font-family: var(--serif);
   font-style: italic;
-  font-size: clamp(0.98rem, 1.5vw, 1.08rem);
+  font-size: clamp(0.98rem, 1.5vw, 1.1rem);
   font-weight: 300;
-  line-height: 1.68;
+  line-height: 1.70;
   color: var(--deep);
   margin: 0;
   flex: 1;
 }
-
 .quote-attr {
   font-family: var(--sans);
   font-size: 0.70rem;
@@ -1338,12 +1350,32 @@ section > * { position: relative; z-index: 1; }
   border-top: 1px solid var(--border);
   display: block;
 }
+.tcarousel-btn {
+  flex-shrink: 0;
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  background: var(--bg-warm);
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: background .25s var(--ease), border-color .25s var(--ease), transform .2s var(--ease), opacity .25s var(--ease);
+  color: var(--deep);
+  padding: 0;
+}
+.tcarousel-btn:hover:not(:disabled) {
+  background: var(--white);
+  border-color: var(--sand-deep);
+  transform: scale(1.06);
+}
+.tcarousel-btn:disabled { opacity: 0.25; cursor: default; }
+.tcarousel-btn svg { width: 16px; height: 16px; }
 
 @media (max-width: 900px) {
-  .testimonial-cards { grid-template-columns: 1fr 1fr; }
+  .testimonial-card { flex: 0 0 calc(50% - 0.75rem); }
 }
-@media (max-width: 520px) {
-  .testimonial-cards { grid-template-columns: 1fr; }
+@media (max-width: 560px) {
+  .testimonial-card { flex: 0 0 100%; }
+  .tcarousel-btn { width: 36px; height: 36px; }
 }
 
 /* ---------- Footer ---------- */

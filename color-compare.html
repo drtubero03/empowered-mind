@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Color Comparison — Current vs Deep Ocean</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'DM Sans', sans-serif; background: #1a1a1a; }
+
+    .label-bar {
+      display: grid; grid-template-columns: 1fr 1fr;
+      position: sticky; top: 0; z-index: 10;
+    }
+    .label-bar div {
+      padding: 0.75rem 1.5rem;
+      font-size: 0.8rem; font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase; text-align: center;
+    }
+    .label-bar .l { background: #163A40; color: #fff; }
+    .label-bar .r { background: #0F2B32; color: #fff; }
+
+    .compare { display: grid; grid-template-columns: 1fr 1fr; }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 5rem 3rem 4rem;
+      min-height: 560px;
+      display: flex; flex-direction: column; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300; font-size: 3.4rem; line-height: 1.15;
+      margin-bottom: 1.4rem;
+    }
+    .hero h1 span { display: block; }
+    .hero p { max-width: 34em; line-height: 1.75; margin-bottom: 0.9rem; font-size: 1.04rem; }
+    .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.4rem; }
+
+    /* ── SECTION ── */
+    .section { padding: 3.5rem 3rem; }
+    .section h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem; font-weight: 400; margin-bottom: 1rem;
+    }
+    .section p { max-width: 34em; line-height: 1.75; margin-bottom: 0.75rem; }
+
+    /* ── DARK SECTION ── */
+    .section-dark { padding: 3.5rem 3rem; }
+    .section-dark h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem; font-weight: 400; margin-bottom: 1rem;
+    }
+    .section-dark p { max-width: 34em; line-height: 1.75; margin-bottom: 0.75rem; }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.9rem 1.7rem; border-radius: 999px;
+      font-family: 'DM Sans', sans-serif; font-size: 0.92rem; font-weight: 500;
+      border: none; cursor: pointer; white-space: nowrap;
+    }
+
+    /* ── SWATCHES ── */
+    .swatches { display: flex; flex-wrap: wrap; gap: 0.75rem; padding: 2rem 3rem; }
+    .swatch { width: 86px; text-align: center; }
+    .swatch-box { width: 86px; height: 64px; border-radius: 8px; border: 1px solid rgba(0,0,0,0.1); }
+    .swatch small { display: block; font-size: 0.62rem; margin-top: 5px; color: #888; line-height: 1.4; }
+
+    .col-divider { border-left: 2px solid #111; }
+    .section-divider { border-top: 2px solid #111; grid-column: 1 / -1; }
+
+    /* ── VIDEO HERO SHARED ── */
+    .hero-video-wrap {
+      position: absolute; inset: 0; overflow: hidden; z-index: 0;
+    }
+    .hero-video-wrap video {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+    .hero-content-wrap { position: relative; z-index: 2; }
+
+    /* ══════════════════════════════════
+       LEFT — CURRENT SITE (warm sand + turquoise)
+    ══════════════════════════════════ */
+    .cur-hero .hero-video-wrap::after {
+      content: ''; position: absolute; inset: 0;
+      background: rgba(22, 58, 64, 0.70);
+    }
+    .cur-hero h1, .cur-hero p { color: #fff; }
+    .cur-hero p { color: rgba(255,255,255,0.85); }
+    .cur-hero .btn-primary { background: #1B5F5C; color: #fff; }
+    .cur-hero .btn-outline {
+      background: transparent; color: #fff;
+      border: 1.5px solid rgba(255,255,255,0.5);
+    }
+
+    .cur-section { background: #F6EFE3; color: #163A40; }
+    .cur-section h2 { color: #163A40; }
+    .cur-section p { color: #5A6B6E; }
+    .cur-section .btn-primary { background: #1B5F5C; color: #fff; }
+    .cur-section .btn-ghost { background: none; border: none; color: #1B5F5C; font-size: 0.95rem; font-weight: 500; padding: 0; cursor: pointer; }
+
+    .cur-soft { background: #EBDFCB; color: #163A40; }
+    .cur-soft h2 { color: #163A40; }
+    .cur-soft p { color: #5A6B6E; }
+
+    .cur-dark { background: #163A40; color: #fff; }
+    .cur-dark h2 { color: #fff; }
+    .cur-dark p { color: rgba(255,255,255,0.8); }
+    .cur-dark .btn-primary { background: #1B5F5C; color: #fff; }
+
+    /* ══════════════════════════════════
+       RIGHT — ADJUSTED (cool stone + deep ocean)
+       Same ocean direction, less warm/fairy
+    ══════════════════════════════════ */
+
+    /* Hero: darker, cooler overlay — more drama, less spa */
+    .adj-hero .hero-video-wrap::after {
+      content: ''; position: absolute; inset: 0;
+      background: rgba(10, 28, 34, 0.76);
+    }
+    .adj-hero h1, .adj-hero p { color: #fff; }
+    .adj-hero p { color: rgba(255,255,255,0.85); }
+    /* Button: slate-teal — more serious than current */
+    .adj-hero .btn-primary { background: #3D8C88; color: #fff; }
+    .adj-hero .btn-outline {
+      background: transparent; color: #fff;
+      border: 1.5px solid rgba(255,255,255,0.45);
+    }
+
+    /* Light section: cooler stone, no yellow-sand warmth */
+    .adj-section { background: #ECEAE6; color: #1A2E33; }
+    .adj-section h2 { color: #1A2E33; }
+    .adj-section p { color: #4A5C60; }
+    .adj-section .btn-primary { background: #1B5F5C; color: #fff; }
+    .adj-section .btn-ghost { background: none; border: none; color: #1B5F5C; font-size: 0.95rem; font-weight: 500; padding: 0; cursor: pointer; }
+
+    /* Soft section: sea-glass/driftwood instead of warm sand */
+    .adj-soft { background: #DDE3E3; color: #1A2E33; }
+    .adj-soft h2 { color: #1A2E33; }
+    .adj-soft p { color: #4A5C60; }
+
+    /* Dark section: deeper, cooler ocean ink */
+    .adj-dark { background: #0F2B32; color: #fff; }
+    .adj-dark h2 { color: #fff; }
+    .adj-dark p { color: rgba(255,255,255,0.8); }
+    .adj-dark .btn-primary { background: #3D8C88; color: #fff; }
+
+  </style>
+</head>
+<body>
+
+<div class="label-bar">
+  <div class="l">Current — Warm Sand + Turquoise</div>
+  <div class="r">Adjusted — Cool Stone + Deep Ocean</div>
+</div>
+
+<!-- ── HERO ── -->
+<div class="compare">
+  <div class="hero cur-hero">
+    <div class="hero-video-wrap">
+      <video autoplay muted loop playsinline>
+        <source src="hero-bg.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="hero-content-wrap">
+      <h1><span>Profound Change.</span><span>Clear Direction.</span><span>Deep Work.</span></h1>
+      <p>I work with high-functioning adults navigating periods of transition — many in midlife — who feel stuck in patterns they understand, but can't seem to change.</p>
+      <p style="opacity:0.75; font-size:0.97rem;">You may have insight.<br>You may have done therapy before.<br>You may know exactly where your patterns come from.</p>
+      <p><em style="font-family:'Cormorant Garamond',serif; font-size:1.1rem;">That's where this work is different.</em></p>
+      <div class="hero-ctas">
+        <button class="btn btn-primary">See If We're a Fit</button>
+        <button class="btn btn-outline">Learn About CSRT</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero adj-hero col-divider">
+    <div class="hero-video-wrap">
+      <video autoplay muted loop playsinline>
+        <source src="hero-bg.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="hero-content-wrap">
+      <h1><span>Profound Change.</span><span>Clear Direction.</span><span>Deep Work.</span></h1>
+      <p>I work with high-functioning adults navigating periods of transition — many in midlife — who feel stuck in patterns they understand, but can't seem to change.</p>
+      <p style="opacity:0.75; font-size:0.97rem;">You may have insight.<br>You may have done therapy before.<br>You may know exactly where your patterns come from.</p>
+      <p><em style="font-family:'Cormorant Garamond',serif; font-size:1.1rem;">That's where this work is different.</em></p>
+      <div class="hero-ctas">
+        <button class="btn btn-primary">See If We're a Fit</button>
+        <button class="btn btn-outline">Learn About CSRT</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── LIGHT SECTION ── -->
+<div class="compare">
+  <div class="section cur-section">
+    <h2>A Different Way of Working</h2>
+    <p>This is intentional, depth-oriented work that goes to the root of what's keeping you stuck — so real change can happen.</p>
+    <p>So you don't just understand yourself better — you begin to <em style="font-family:'Cormorant Garamond',serif; font-size:1.08em;">experience</em> yourself differently.</p>
+    <div class="hero-ctas" style="margin-top:1.5rem;">
+      <button class="btn btn-primary">Apply to Work Together</button>
+      <button class="btn btn-ghost">More About Me →</button>
+    </div>
+  </div>
+  <div class="section adj-section col-divider">
+    <h2>A Different Way of Working</h2>
+    <p>This is intentional, depth-oriented work that goes to the root of what's keeping you stuck — so real change can happen.</p>
+    <p>So you don't just understand yourself better — you begin to <em style="font-family:'Cormorant Garamond',serif; font-size:1.08em;">experience</em> yourself differently.</p>
+    <div class="hero-ctas" style="margin-top:1.5rem;">
+      <button class="btn btn-primary">Apply to Work Together</button>
+      <button class="btn btn-ghost">More About Me →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── SOFT SECTION ── -->
+<div class="compare">
+  <div class="section cur-soft">
+    <h2 style="font-family:'Cormorant Garamond',serif; font-weight:400;">This may feel familiar.</h2>
+    <p>You're self-aware — but something still isn't shifting.</p>
+    <p>Stuck between knowing and actually doing.</p>
+    <p>Repeating the same patterns in relationships or life.</p>
+    <p style="margin-top:1.2rem; font-family:'Cormorant Garamond',serif; font-size:1.3rem;"><em>You're not alone. And you're not stuck.</em></p>
+    <p style="font-family:'Cormorant Garamond',serif; font-size:1.1rem; color:#5A6B6E;"><em>You're patterned. And patterns can change.</em></p>
+  </div>
+  <div class="section adj-soft col-divider">
+    <h2 style="font-family:'Cormorant Garamond',serif; font-weight:400;">This may feel familiar.</h2>
+    <p>You're self-aware — but something still isn't shifting.</p>
+    <p>Stuck between knowing and actually doing.</p>
+    <p>Repeating the same patterns in relationships or life.</p>
+    <p style="margin-top:1.2rem; font-family:'Cormorant Garamond',serif; font-size:1.3rem;"><em>You're not alone. And you're not stuck.</em></p>
+    <p style="font-family:'Cormorant Garamond',serif; font-size:1.1rem; color:#4A5C60;"><em>You're patterned. And patterns can change.</em></p>
+  </div>
+</div>
+
+<!-- ── DARK CTA ── -->
+<div class="compare">
+  <div class="section-dark cur-dark">
+    <h2>Begin the Work</h2>
+    <p>If you're ready to move beyond insight and into meaningful, lasting change — apply now to begin your 12-session process.</p>
+    <div style="margin-top:1.5rem;">
+      <button class="btn btn-primary">Apply to Work Together</button>
+    </div>
+    <p style="margin-top:1.5rem; font-size:0.85rem; opacity:0.55; font-family:'Cormorant Garamond',serif; font-style:italic;">Not therapy forever — just enough to change what hasn't been changing.</p>
+  </div>
+  <div class="section-dark adj-dark col-divider">
+    <h2>Begin the Work</h2>
+    <p>If you're ready to move beyond insight and into meaningful, lasting change — apply now to begin your 12-session process.</p>
+    <div style="margin-top:1.5rem;">
+      <button class="btn btn-primary">Apply to Work Together</button>
+    </div>
+    <p style="margin-top:1.5rem; font-size:0.85rem; opacity:0.55; font-family:'Cormorant Garamond',serif; font-style:italic;">Not therapy forever — just enough to change what hasn't been changing.</p>
+  </div>
+</div>
+
+<!-- ── SWATCHES ── -->
+<div class="compare" style="background:#fff;">
+  <div>
+    <div class="swatches">
+      <div class="swatch"><div class="swatch-box" style="background:#F6EFE3;"></div><small>#F6EFE3<br>Background<br><em>warm sand</em></small></div>
+      <div class="swatch"><div class="swatch-box" style="background:#EBDFCB;"></div><small>#EBDFCB<br>Soft section<br><em>warm beige</em></small></div>
+      <div class="swatch"><div class="swatch-box" style="background:#DCC8AC;"></div><small>#DCC8AC<br>Sand</small></div>
+      <div class="swatch"><div class="swatch-box" style="background:#5BB8B5;"></div><small>#5BB8B5<br>Turquoise</small></div>
+      <div class="swatch"><div class="swatch-box" style="background:#1B5F5C;"></div><small>#1B5F5C<br>Button</small></div>
+      <div class="swatch"><div class="swatch-box" style="background:#163A40;"></div><small>#163A40<br>Deep ink</small></div>
+      <div class="swatch"><div class="swatch-box" style="background:#5A6B6E;"></div><small>#5A6B6E<br>Body text</small></div>
+    </div>
+  </div>
+  <div class="col-divider">
+    <div class="swatches">
+      <div class="swatch"><div class="swatch-box" style="background:#ECEAE6;"></div><small>#ECEAE6<br>Background<br><em>cool stone</em></small></div>
+      <div class="swatch"><div class="swatch-box" style="background:#DDE3E3;"></div><small>#DDE3E3<br>Soft section<br><em>sea glass</em></small></div>
+      <div class="swatch"><div class="swatch-box" style="background:#B8C8C8;"></div><small>#B8C8C8<br>Stone teal</small></div>
+      <div class="swatch"><div class="swatch-box" style="background:#3D8C88;"></div><small>#3D8C88<br>Turquoise</small></div>
+      <div class="swatch"><div class="swatch-box" style="background:#1B5F5C;"></div><small>#1B5F5C<br>Button<br><em>unchanged</em></small></div>
+      <div class="swatch"><div class="swatch-box" style="background:#0F2B32;"></div><small>#0F2B32<br>Deep ink<br><em>cooler</em></small></div>
+      <div class="swatch"><div class="swatch-box" style="background:#4A5C60;"></div><small>#4A5C60<br>Body text<br><em>cooler</em></small></div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
