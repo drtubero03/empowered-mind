@@ -382,10 +382,10 @@ section > * { position: relative; z-index: 1; }
 
 /* Nav over dark hero — white text until scrolled */
 .nav.nav-hero-light:not(.scrolled) .nav-logo { color: rgba(255,255,255,0.92); }
-.nav.nav-hero-light:not(.scrolled) .nav-links a:not(.btn) { color: rgba(255,255,255,0.85); }
-.nav.nav-hero-light:not(.scrolled) .nav-links a:not(.btn)::after { background: rgba(255,255,255,0.65); }
-.nav.nav-hero-light:not(.scrolled) .nav-links .btn-primary { background: var(--turq-dark); color: #fff; }
-.nav.nav-hero-light:not(.scrolled) .nav-links .btn-primary:hover { background: var(--turq-deep); color: #fff; }
+.nav.nav-hero-light:not(.scrolled) .nav-links a:not(.btn) { color: rgba(255,255,255,0.87); }
+.nav.nav-hero-light:not(.scrolled) .nav-links a:not(.btn)::after { background: rgba(255,255,255,0.60); }
+.nav.nav-hero-light:not(.scrolled) .nav-links .btn-primary { background: var(--turq); color: #fff; }
+.nav.nav-hero-light:not(.scrolled) .nav-links .btn-primary:hover { background: var(--turq-light); color: var(--deep); box-shadow: 0 8px 20px rgba(91,184,181,0.25); }
 .nav.nav-hero-light:not(.scrolled) .mobile-menu-btn span { background: rgba(255,255,255,0.9); }
 
 /* Portrait frame — soft sand border + turquoise accent */
