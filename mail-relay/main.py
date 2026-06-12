@@ -35,6 +35,7 @@ INQUIRY_LABELS = {
     "csrt": "CSRT 12-session program",
     "group": "The Midlife Shift — Spring 2026 group",
     "waitlist": "Waitlist for a future group",
+    "midlife-list": "Midlife List — future groups & retreats",
     "ongoing": "Ongoing individual therapy",
     "not-sure": "Not sure yet",
     "other": "Something else",
@@ -82,6 +83,13 @@ def apply():
         availability = [availability]
     availability = [str(x).strip()[:60] for x in availability if x][:8]
 
+    location = (data.get("location") or "").strip()[:120]
+    timezone = (data.get("timezone") or "").strip()[:60]
+    interests = data.get("interests") or []
+    if isinstance(interests, str):
+        interests = [interests]
+    interests = [str(x).strip()[:60] for x in interests if x][:10]
+
     if not name:
         return (jsonify({"error": "name_required"}), 400, headers)
     if not email_addr or not EMAIL_RE.match(email_addr):
@@ -98,6 +106,8 @@ def apply():
         subject = "New Midlife Shift group application"
     elif inquiry == "waitlist":
         subject = "Group waitlist signup — Empowered Mind"
+    elif inquiry == "midlife-list":
+        subject = "Midlife List signup — Empowered Mind"
 
     rows: list[tuple[str, str]] = [
         ("Name", name),
@@ -112,6 +122,12 @@ def apply():
         rows.append(("Therapy history", therapy_history))
     if availability:
         rows.append(("Availability", ", ".join(availability)))
+    if location:
+        rows.append(("Location", location))
+    if timezone:
+        rows.append(("Timezone", timezone))
+    if interests:
+        rows.append(("Interested in", ", ".join(interests)))
 
     table_html = "".join(
         f'<tr><td style="padding:6px 14px 6px 0;color:#5A6B6E;'

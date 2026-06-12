@@ -15,6 +15,7 @@
     initScrollFadeIn();
     initFaq();
     initApplyForm();
+    initMidlifeListForm();
     initActiveNav();
     initHeroVideo();
     initFoamParticles();
@@ -325,6 +326,114 @@
     });
 
     update();
+  }
+
+  /* ---- Midlife List form ---- */
+  function initMidlifeListForm() {
+    const form = document.querySelector('#midlife-list-form');
+    if (!form) return;
+
+    form.addEventListener('submit', async (ev) => {
+      ev.preventDefault();
+      const submitBtn = form.querySelector('.form-submit');
+      const errorBox = form.querySelector('.form-error');
+      if (errorBox) { errorBox.classList.remove('show'); errorBox.textContent = ''; }
+      const originalLabel = submitBtn ? submitBtn.innerHTML : null;
+      if (submitBtn) { submitBtn.disabled = true; submitBtn.innerHTML = 'Sending…'; }
+
+      const fd = new FormData(form);
+      const name = (fd.get('name') || '').trim();
+      const email = (fd.get('email') || '').trim();
+      const phone = (fd.get('phone') || '').trim();
+      const location = (fd.get('location') || '').trim();
+      const timezone = (fd.get('timezone') || '').trim();
+      const interests = fd.getAll('interests');
+      const timing = fd.getAll('timing');
+      const rawMessage = (fd.get('message') || '').trim();
+
+      // Bundle structured fields into message so they always appear in the email
+      const msgParts = [];
+      if (location) msgParts.push('Location: ' + location);
+      if (timezone) msgParts.push('Timezone: ' + timezone);
+      if (interests.length) msgParts.push('Interested in: ' + interests.join(', '));
+      if (timing.length) msgParts.push('Timing: ' + timing.join(', '));
+      if (rawMessage) { msgParts.push(''); msgParts.push(rawMessage); }
+
+      const payload = {
+        name,
+        email,
+        phone,
+        inquiry: 'midlife-list',
+        message: msgParts.join('\n'),
+        availability: timing,
+        location,
+        timezone,
+        interests,
+        website: fd.get('website') || '',
+      };
+
+      if (!payload.name || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(payload.email)) {
+        mlShowError(errorBox, 'Please add your name and a valid email.');
+        mlRestoreButton(submitBtn, originalLabel);
+        return;
+      }
+
+      let success = false;
+      let serverErr = null;
+      try {
+        const r = await fetch(RELAY_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        if (r.ok) {
+          success = true;
+        } else {
+          let body = null;
+          try { body = await r.json(); } catch (_) {}
+          serverErr = (body && body.error) || ('HTTP ' + r.status);
+        }
+      } catch (e) {
+        serverErr = 'network';
+      }
+
+      if (success) {
+        const wrap = form.closest('.form-wrap');
+        if (wrap) {
+          wrap.classList.add('submitted');
+          const thanks = wrap.querySelector('.form-thanks');
+          if (thanks) { thanks.classList.add('show'); thanks.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+        }
+        return;
+      }
+
+      // Fallback mailto
+      const subject = encodeURIComponent('Midlife List signup — Empowered Mind');
+      const lines = ['Name: ' + name, 'Email: ' + email];
+      if (phone) lines.push('Phone: ' + phone);
+      if (msgParts.length) { lines.push(''); lines.push(...msgParts); }
+      const mailto = 'mailto:Drtubero03@gmail.com?subject=' + subject + '&body=' + encodeURIComponent(lines.join('\n'));
+      mlShowError(errorBox, "We couldn’t reach the server (" + (serverErr || 'unknown') + '). ', { mailto, label: 'Send via your email app instead →' });
+      mlRestoreButton(submitBtn, originalLabel);
+    });
+
+    function mlRestoreButton(btn, html) {
+      if (!btn) return;
+      btn.disabled = false;
+      if (html != null) btn.innerHTML = html;
+    }
+    function mlShowError(box, text, link) {
+      if (!box) { alert(text); return; }
+      box.classList.add('show');
+      box.innerHTML = '';
+      box.appendChild(document.createTextNode(text));
+      if (link && link.mailto) {
+        const a = document.createElement('a');
+        a.href = link.mailto;
+        a.textContent = link.label || 'Send via email instead';
+        box.appendChild(a);
+      }
+    }
   }
 
   /* ---- Active nav link ---- */
