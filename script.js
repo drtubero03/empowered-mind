@@ -20,6 +20,7 @@
     initHeroVideo();
     initFoamParticles();
     initTestimonialCarousel();
+    initTestimonialsToggle();
   });
 
   /* ---- Nav scroll state ---- */
@@ -434,6 +435,17 @@
         box.appendChild(a);
       }
     }
+  }
+
+  /* ---- Testimonials "More Reflections" toggle ---- */
+  function initTestimonialsToggle() {
+    const btn = document.querySelector('.tblock-more-btn');
+    const extra = document.querySelector('.testimonial-blocks-extra');
+    if (!btn || !extra) return;
+    btn.addEventListener('click', function () {
+      extra.classList.add('visible');
+      btn.style.display = 'none';
+    });
   }
 
   /* ---- Active nav link ---- */
