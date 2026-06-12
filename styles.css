@@ -47,9 +47,9 @@
   --border:       #BBC8C7;     /* coastal stone border */
 
   /* Periwink brand bridge — muted lavender, adjacent to but distinct from the teal palette */
-  --periwink:      #9B91B8;   /* soft muted lavender — Periwink brand word */
+  --periwink:      #6B5F98;   /* deep muted plum — Periwink brand word */
   --periwink-soft: #D6D0E8;   /* pale lavender wash — divider, hover bg */
-  --periwink-deep: #7B6FA8;   /* deeper lavender — hover text, button */
+  --periwink-deep: #5A4D84;   /* deeper plum — hover text, button */
 
   --serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
   --sans:  'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
