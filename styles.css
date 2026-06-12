@@ -305,6 +305,16 @@ section > * { position: relative; z-index: 1; }
   color: var(--deep);
   border-color: var(--white);
 }
+.bg-dark .btn-primary {
+  background: var(--bg);
+  color: var(--deep);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.22);
+}
+.bg-dark .btn-primary:hover {
+  background: var(--white);
+  color: var(--deep);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.3);
+}
 .bg-teal .btn-outline,
 .bg-dark .btn-outline {
   color: var(--white);
