@@ -46,6 +46,11 @@
   --white:        #FFFFFF;
   --border:       #BBC8C7;     /* coastal stone border */
 
+  /* Periwink brand bridge — muted lavender, adjacent to but distinct from the teal palette */
+  --periwink:      #9B91B8;   /* soft muted lavender — Periwink brand word */
+  --periwink-soft: #D6D0E8;   /* pale lavender wash — divider, hover bg */
+  --periwink-deep: #7B6FA8;   /* deeper lavender — hover text, button */
+
   --serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
   --sans:  'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
 
@@ -1576,6 +1581,33 @@ footer h4 {
     scroll-behavior: auto !important;
   }
   .hero h1 .line, .hero-sub, .hero-ctas { opacity: 1; transform: none; }
+}
+
+/* ---------- Periwink brand bridge ---------- */
+
+.periwink-word {
+  color: var(--periwink);
+}
+.periwink-bridge .divider-line {
+  background: linear-gradient(90deg, transparent, var(--periwink-soft), transparent);
+}
+.periwink-bridge .btn-ghost {
+  color: var(--periwink-deep);
+  border-bottom: 1px solid var(--periwink-soft);
+  padding-bottom: 2px;
+}
+.periwink-bridge .btn-ghost:hover {
+  color: var(--periwink-deep);
+  border-bottom-color: var(--periwink);
+}
+a.periwink-word {
+  color: var(--periwink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--periwink-soft);
+  transition: border-color .2s;
+}
+a.periwink-word:hover {
+  border-bottom-color: var(--periwink);
 }
 
 /* ---------- Misc ---------- */
