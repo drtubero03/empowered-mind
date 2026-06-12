@@ -380,6 +380,14 @@ section > * { position: relative; z-index: 1; }
   object-fit: contain;
 }
 
+/* Nav over dark hero — white text until scrolled */
+.nav.nav-hero-light:not(.scrolled) .nav-logo { color: rgba(255,255,255,0.92); }
+.nav.nav-hero-light:not(.scrolled) .nav-links a:not(.btn) { color: rgba(255,255,255,0.85); }
+.nav.nav-hero-light:not(.scrolled) .nav-links a:not(.btn)::after { background: rgba(255,255,255,0.65); }
+.nav.nav-hero-light:not(.scrolled) .nav-links .btn-primary { background: var(--turq-dark); color: #fff; }
+.nav.nav-hero-light:not(.scrolled) .nav-links .btn-primary:hover { background: var(--turq-deep); color: #fff; }
+.nav.nav-hero-light:not(.scrolled) .mobile-menu-btn span { background: rgba(255,255,255,0.9); }
+
 /* Portrait frame — soft sand border + turquoise accent */
 .portrait-frame {
   position: relative;
@@ -786,6 +794,10 @@ section > * { position: relative; z-index: 1; }
 .hero-sub-page {
   min-height: 60vh;
   padding: 7rem 0 4rem;
+}
+.hero-blog {
+  min-height: 66vh;
+  padding: 8rem 0 5rem;
 }
 .hero-sub-page h1 { font-size: clamp(2.3rem, 4.5vw, 3.4rem); margin-bottom: 0.85rem; }
 .hero-sub-page .hero-sub { font-size: 1.05rem; }
