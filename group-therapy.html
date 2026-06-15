@@ -70,8 +70,11 @@
 
 <!-- ===== HERO ===== -->
 <header class="hero hero-sub-page">
-  <img class="hero-video" src="img/hero-group.jpg" alt="" aria-hidden="true" onload="this.classList.add('loaded')" style="object-position:center 72%;" />
-  <div class="hero-overlay" aria-hidden="true" style="background:linear-gradient(to bottom,rgba(15,43,50,0.22) 0%,rgba(15,43,50,0.18) 40%,rgba(10,26,32,0.80) 100%);"></div>
+  <video class="hero-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+    <source src="hero-bg.mp4" type="video/mp4">
+  </video>
+  <div class="hero-overlay" aria-hidden="true" style="background:linear-gradient(to bottom,rgba(15,43,50,0.14) 0%,rgba(15,43,50,0.05) 40%,rgba(10,26,32,0.72) 100%);"></div>
+  <div class="foam-particles" id="foamHost" aria-hidden="true"></div>
   <div class="container hero-content">
     <p class="eyebrow">Midlife Shift</p>
     <h1>The Midlife Shift</h1>
@@ -87,26 +90,22 @@
 
 <!-- ===== INTRO COPY ===== -->
 <section class="bg-foam">
-  <div class="container">
-    <div class="grid-2" style="align-items:center;gap:3.5rem;">
-      <div class="fade-up">
-        <figure style="margin:0;border-radius:12px;overflow:hidden;box-shadow:0 8px 32px rgba(15,43,50,0.10);">
-          <img src="img/blog/group.jpg" alt="Women in a supportive group together" style="width:100%;display:block;" />
-        </figure>
-      </div>
-      <div>
-        <p class="eyebrow fade-up">Why this group exists</p>
-        <h2 class="fade-up">Something is changing. You can feel it.</h2>
-        <div class="divider-line"></div><div class="tide-glyph" aria-hidden="true" style="margin-left:0;"><svg viewBox="0 0 64 12" xmlns="http://www.w3.org/2000/svg"><path d="M2 6 Q 8 1, 14 6 T 26 6 T 38 6 T 50 6 T 62 6"/></svg></div>
-        <p class="fade-up delay-1" style="font-family:var(--serif);font-style:italic;font-weight:500;font-size:1.22rem;color:var(--deep);line-height:1.75;margin-bottom:1.25rem;">Something feels different — in how life feels, what you want, or who you're becoming. Midlife can feel disorienting, clarifying, lonely, liberating — sometimes all at once. You do not have to move through it alone.</p>
-        <p class="fade-up delay-1">There is a particular kind of awareness that often arrives in midlife. Not a breakdown — a reckoning. The ways you've been living, relating, and moving through the world begin to feel less like conscious choices and more like patterns you inherited, roles you adapted to, or identities you slipped into without fully choosing.</p>
-        <p class="fade-up delay-2">Questions emerge that are harder to push aside:<br><strong>What do I actually want now?</strong><br><strong>Who have I become?</strong><br><strong>What feels true from this point forward?</strong></p>
-        <p class="fade-up delay-2"><strong>This group was created for that moment.</strong></p>
-        <p class="fade-up delay-3">Not to rush toward answers, but to create space for honest reflection, meaningful conversation, and the company of other women moving through a similar season of life — with depth, curiosity, and care.</p>
-      </div>
-    </div>
+  <div class="container narrow">
+    <p class="eyebrow fade-up">Why this group exists</p>
+    <h2 class="fade-up">Something is changing. You can feel it.</h2>
+    <div class="divider-line"></div><div class="tide-glyph" aria-hidden="true"><svg viewBox="0 0 64 12" xmlns="http://www.w3.org/2000/svg"><path d="M2 6 Q 8 1, 14 6 T 26 6 T 38 6 T 50 6 T 62 6"/></svg></div>
+    <p class="fade-up delay-1" style="font-family:var(--serif);font-style:italic;font-weight:500;font-size:1.22rem;color:var(--deep);line-height:1.75;margin-bottom:1.25rem;">Something feels different — in how life feels, what you want, or who you're becoming. Midlife can feel disorienting, clarifying, lonely, liberating — sometimes all at once. You do not have to move through it alone.</p>
+    <p class="fade-up delay-1">There is a particular kind of awareness that often arrives in midlife. Not a breakdown — a reckoning. The ways you've been living, relating, and moving through the world begin to feel less like conscious choices and more like patterns you inherited, roles you adapted to, or identities you slipped into without fully choosing.</p>
+    <p class="fade-up delay-2">Questions emerge that are harder to push aside:<br><strong>What do I actually want now?</strong><br><strong>Who have I become?</strong><br><strong>What feels true from this point forward?</strong></p>
+    <p class="fade-up delay-2"><strong>This group was created for that moment.</strong></p>
+    <p class="fade-up delay-3">Not to rush toward answers, but to create space for honest reflection, meaningful conversation, and the company of other women moving through a similar season of life — with depth, curiosity, and care.</p>
   </div>
 </section>
+
+<!-- ===== CONNECTION IMAGE ===== -->
+<div class="fade-up" style="overflow:hidden;max-height:460px;line-height:0;">
+  <img src="img/hero-group.jpg" alt="Women in quiet connection on the beach" style="width:100%;height:460px;object-fit:cover;object-position:center 72%;display:block;filter:saturate(0.78) brightness(0.96);" />
+</div>
 
 <!-- ===== WHAT THIS IS ===== -->
 <section class="bg-sand">
@@ -131,11 +130,9 @@
         <h2 class="fade-up">Why This Work Matters to Me</h2>
         <div class="divider-line"></div><div class="tide-glyph" aria-hidden="true" style="margin-left:0;"><svg viewBox="0 0 64 12" xmlns="http://www.w3.org/2000/svg"><path d="M2 6 Q 8 1, 14 6 T 26 6 T 38 6 T 50 6 T 62 6"/></svg></div>
         <p class="fade-up delay-1">I created this group not only as a psychologist, but as a woman who found herself unexpectedly changed by midlife.</p>
-        <p class="fade-up delay-1">Like many women, I found myself asking questions I had not anticipated — about identity, energy, relationships, purpose, desire, and the unsettling feeling that something important inside me was shifting. I felt deeply unprepared — and at times unmoored — by the complexity of this transition.</p>
-        <p class="fade-up delay-2">What surprised me most was realizing that despite years of doctoral and clinical training, I had received virtually no education about the emotional and psychological realities of perimenopause and menopause — how profoundly they can affect mood, identity, relationships, confidence, and our sense of ourselves.</p>
-        <p class="fade-up delay-2">That realization led me to pursue advanced training through <strong>Harvard Medical School's Women's Health program</strong> to better understand the intersection of hormones, emotional wellbeing, identity, and the midlife transition — and to bring that understanding more thoughtfully into the work I do with women.</p>
-        <p class="fade-up delay-3">But this is not about assuming everything is hormonal — or that there is one answer for everyone.</p>
-        <p class="fade-up delay-3">It is about listening deeply for what is actually happening in your life, understanding the many layers of change, and helping you reconnect with what feels most true, steady, and meaningful for you now.</p>
+        <p class="fade-up delay-1">Like many women, I found myself asking questions I had not anticipated — about identity, desire, relationships, and the unsettling feeling that something important inside me was shifting. I felt deeply unprepared — and at times unmoored — by how much this transition asked of me.</p>
+        <p class="fade-up delay-2">What surprised me most was realizing that despite years of doctoral and clinical training, I had received virtually no education about the emotional and psychological realities of perimenopause and menopause. That gap led me to pursue advanced training through <strong>Harvard Medical School's Women's Health program</strong> — to better understand how hormones, emotional wellbeing, and identity intersect during this transition.</p>
+        <p class="fade-up delay-3">But this is not about assuming everything is hormonal — or that there is one answer for everyone. It is about listening deeply for what is actually happening in your life, and helping you reconnect with what feels most true, steady, and meaningful for you now.</p>
       </div>
       <div class="fade-up delay-1" style="display:flex;justify-content:center;padding-top:1.5rem;">
         <figure class="portrait-frame" style="max-width:220px;">
@@ -226,54 +223,32 @@
         <cite class="group-testimonial-cite">Midlife Group Member &bull; Ontario</cite>
       </div>
 
-      <div class="group-testimonial-card fade-up delay-2">
-        <blockquote>
-          <p>I didn't realize how much I needed to be in a room with women who understood — not just nodding, but actually getting it. I arrived anxious and questioning everything. Adrian created a space where it felt safe to be honest, and the other women held that honesty with me. I left feeling more grounded, more trusting of myself, and less afraid of what was changing.</p>
-        </blockquote>
-        <cite class="group-testimonial-cite">Participant &bull; California</cite>
-      </div>
-
     </div>
   </div>
 </section>
 
 <!-- ===== FORMAT + DATES ===== -->
 <section class="bg-tide">
-  <div class="container">
-    <div class="grid-2" style="align-items:center;gap:4rem;">
-      <div class="fade-up" aria-hidden="true">
-        <div class="group-circle">
-          <div class="ring ring-1" style="opacity:0.22;"></div>
-          <div class="ring ring-2" style="opacity:0.38;"></div>
-          <div class="ring ring-3" style="opacity:0.22;"></div>
-          <span class="ring-dot"></span>
-          <span class="ring-dot"></span>
-          <span class="ring-dot"></span>
-          <span class="ring-dot"></span>
-          <span class="ring-dot"></span>
-          <span class="ring-dot"></span>
-        </div>
-      </div>
-      <div class="fade-up delay-1">
-        <p class="eyebrow">Format &amp; schedule</p>
-        <h2>What to expect</h2>
-        <div class="divider-line"></div>
-        <p class="fade-up" style="margin-bottom:1.5rem;font-family:var(--serif);font-style:italic;color:var(--deep);font-size:1.05rem;line-height:1.7;">A thoughtfully guided space designed to foster safety, connection, and honest reflection.</p>
-        <ul class="schedule-list">
-          <li><span class="sched-label">Sessions</span><span>6 weekly meetings</span></li>
-          <li><span class="sched-label">Group size</span><span>Small, curated — 5 to 8 women</span></li>
-          <li><span class="sched-label">Format</span><span>Virtual, held over Zoom</span></li>
-          <li><span class="sched-label">Approach</span><span>Experiential, reflective, relational</span></li>
-          <li><span class="sched-label">Day &amp; time</span><span>Thursdays · 4:30 – 6:00 PM EST</span></li>
-          <li><span class="sched-label">Next cohort</span><span>Future dates forming — join the list to be notified</span></li>
-        </ul>
-        <p style="margin-top:2rem;">
-          <a href="midlife-list.html" class="btn btn-primary">
-            Stay Connected
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-          </a>
-        </p>
-      </div>
+  <div class="container narrow">
+    <div class="fade-up">
+      <p class="eyebrow">Format &amp; schedule</p>
+      <h2>What to expect</h2>
+      <div class="divider-line"></div>
+      <p style="margin-bottom:1.5rem;font-family:var(--serif);font-style:italic;color:var(--deep);font-size:1.05rem;line-height:1.7;">A thoughtfully guided space designed to foster safety, connection, and honest reflection.</p>
+      <ul class="schedule-list">
+        <li><span class="sched-label">Sessions</span><span>6 weekly meetings</span></li>
+        <li><span class="sched-label">Group size</span><span>Small, curated — 5 to 8 women</span></li>
+        <li><span class="sched-label">Format</span><span>Virtual, held over Zoom</span></li>
+        <li><span class="sched-label">Approach</span><span>Experiential, reflective, relational</span></li>
+        <li><span class="sched-label">Day &amp; time</span><span>Thursdays · 4:30 – 6:00 PM EST</span></li>
+        <li><span class="sched-label">Next cohort</span><span>Future dates forming — join the list to be notified</span></li>
+      </ul>
+      <p style="margin-top:2rem;">
+        <a href="midlife-list.html" class="btn btn-primary">
+          Stay Connected
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+      </p>
     </div>
   </div>
 </section>
@@ -300,10 +275,8 @@
 <section class="bg-dark" style="background:linear-gradient(180deg,#2B6464 0%,#245555 100%);">
   <div class="container narrow center">
     <p class="pull-quote fade-up">This season of life may ask more honesty of you — but it can also bring you closer to yourself.</p>
-    <p class="eyebrow fade-up delay-1">Stay connected</p>
-    <h2 class="fade-up delay-1">You Do Not Have to Navigate This Season Alone.</h2>
-    <p class="fade-up delay-2" style="font-family:var(--serif);font-style:italic;font-size:1.1rem;color:rgba(255,255,255,0.65);margin-top:0.25rem;margin-bottom:0;">Future groups. Reflections. Retreats.</p>
-    <p class="fade-up delay-2" style="margin-top:1rem;">Stay connected for future Midlife Shift groups, retreats, reflections, and conversations for women navigating change.</p>
+    <h2 class="fade-up delay-1">You Do Not Have to Navigate This Alone.</h2>
+    <p class="fade-up delay-2" style="margin-top:1.25rem;">Join the list for future Midlife Shift groups, retreats, and reflections — for women navigating change with honesty and care.</p>
     <div class="fade-up delay-3" style="margin-top:2rem;">
       <a href="midlife-list.html" class="btn btn-primary">
         Stay Connected
