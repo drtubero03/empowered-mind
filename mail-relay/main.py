@@ -204,7 +204,61 @@ def apply():
             headers,
         )
 
-    return (jsonify({"ok": True, "id": r.json().get("id")}), 200, headers)
+    admin_id = r.json().get("id")
+
+    # --- Confirmation email to the applicant ---
+    first_name = name.split()[0] if name else "there"
+    confirm_html = f"""<!doctype html>
+<html><body style="margin:0;background:#F0EBE4;padding:32px 16px;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif;">
+  <div style="max-width:520px;margin:0 auto;background:#fff;border:1px solid #C5CFCF;border-radius:14px;padding:32px 36px;">
+    <p style="margin:0 0 6px 0;color:#57A3A0;font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:500;">Empowered Mind</p>
+    <h2 style="font-family:Georgia,serif;color:#0F2B32;font-weight:400;margin:0 0 24px 0;font-size:22px;">Thank you for reaching out</h2>
+    <p style="color:#4A5C60;line-height:1.75;margin:0 0 16px 0;">Hi {e(first_name)},</p>
+    <p style="color:#4A5C60;line-height:1.75;margin:0 0 16px 0;">Thank you for reaching out. I've received your inquiry and will personally review your application.</p>
+    <p style="color:#4A5C60;line-height:1.75;margin:0 0 16px 0;">I'll carefully review what you shared and be in touch within <strong style="color:#0F2B32;">2–3 business days</strong> to discuss whether a consultation call may be the next best step.</p>
+    <p style="color:#4A5C60;line-height:1.75;margin:0 0 28px 0;">I know reaching out can sometimes feel vulnerable, and I truly appreciate you taking this step.</p>
+    <p style="color:#4A5C60;line-height:1.75;margin:0;">Warmly,<br/><strong style="color:#0F2B32;">Dr. Adrian Tubero, Psy.D.</strong><br/><span style="color:#7A8E8E;font-size:14px;">Empowered Mind</span></p>
+    <hr style="border:0;height:1px;background:#C5CFCF;margin:28px 0 20px 0;"/>
+    <p style="color:#7A8E8E;font-size:12px;margin:0;">This is an automated confirmation. Please do not reply to this message — Dr. Tubero will reach out to you directly within 2–3 business days.</p>
+  </div>
+</body></html>"""
+
+    confirm_text = (
+        f"Hi {first_name},\n\n"
+        "Thank you for reaching out. I've received your inquiry and will personally review your application.\n\n"
+        "I'll carefully review what you shared and be in touch within 2–3 business days to discuss whether "
+        "a consultation call may be the next best step.\n\n"
+        "I know reaching out can sometimes feel vulnerable, and I truly appreciate you taking this step.\n\n"
+        "Warmly,\n"
+        "Dr. Adrian Tubero, Psy.D.\n"
+        "Empowered Mind\n\n"
+        "---\n"
+        "This is an automated confirmation. Dr. Tubero will reach out to you directly within 2–3 business days."
+    )
+
+    confirm_payload = {
+        "from": FROM_EMAIL,
+        "to": [email_addr],
+        "reply_to": TO_EMAIL,
+        "subject": "Thank you for reaching out — Empowered Mind",
+        "html": confirm_html,
+        "text": confirm_text,
+    }
+
+    try:
+        requests.post(
+            "https://api.resend.com/emails",
+            headers={
+                "Authorization": f"Bearer {RESEND_API_KEY}",
+                "Content-Type": "application/json",
+            },
+            data=json.dumps(confirm_payload),
+            timeout=15,
+        )
+    except Exception:
+        pass  # confirmation failure never blocks the submission
+
+    return (jsonify({"ok": True, "id": admin_id}), 200, headers)
 
 
 @app.route("/", methods=["GET"])
