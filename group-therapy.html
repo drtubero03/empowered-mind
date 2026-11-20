@@ -50,7 +50,10 @@
       max-width: calc(50% - 0.75rem);
       margin: 0 auto;
     }
-    @media (max-width: 640px) { .group-testimonial-solo { max-width: 100%; } }
+    @media (max-width: 640px) {
+      .group-testimonial-solo { max-width: 100%; }
+      .group-connection-image { object-position: 55% 68% !important; }
+    }
   </style>
 </head>
 <body>
@@ -112,7 +115,7 @@
 
 <!-- ===== CONNECTION IMAGE ===== -->
 <div class="fade-up" style="overflow:hidden;max-height:460px;line-height:0;">
-  <img src="img/hero-group.jpg" alt="Women in quiet connection on the beach" style="width:100%;height:460px;object-fit:cover;object-position:center 68%;display:block;filter:saturate(0.68) brightness(0.90) sepia(0.08);" />
+  <img class="group-connection-image" src="img/hero-group.jpg" alt="Women in quiet connection on the beach" style="width:100%;height:460px;object-fit:cover;object-position:center 68%;display:block;filter:saturate(0.68) brightness(0.90) sepia(0.08);" />
 </div>
 
 <!-- ===== WHAT THIS IS ===== -->
