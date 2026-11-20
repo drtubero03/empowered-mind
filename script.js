@@ -139,6 +139,11 @@
       }
     }
 
+    const preselect = new URLSearchParams(window.location.search).get('group');
+    const selectValue = preselect === 'future' ? 'Future Midlife Shift groups' : preselect === 'either' ? 'Either / depending on availability' : 'December 8, 2026 Tuesday group';
+    const cohortChoice = Array.from(form.querySelectorAll('input[name="cohort"]')).find(el => el.value === selectValue);
+    if (cohortChoice) cohortChoice.checked = true;
+
     form.addEventListener('submit', async (ev) => {
       ev.preventDefault();
       const submitBtn = form.querySelector('.form-submit');
@@ -348,6 +353,7 @@
       const phone = (fd.get('phone') || '').trim();
       const location = (fd.get('location') || '').trim();
       const timezone = (fd.get('timezone') || '').trim();
+      const cohort = (fd.get('cohort') || '').trim();
       const interests = fd.getAll('interests');
       const timing = fd.getAll('timing');
       const rawMessage = (fd.get('message') || '').trim();
@@ -356,6 +362,7 @@
       const msgParts = [];
       if (location) msgParts.push('Location: ' + location);
       if (timezone) msgParts.push('Timezone: ' + timezone);
+      if (cohort) msgParts.push('Group requested: ' + cohort);
       if (interests.length) msgParts.push('Interested in: ' + interests.join(', '));
       if (timing.length) msgParts.push('Timing: ' + timing.join(', '));
       if (rawMessage) { msgParts.push(''); msgParts.push(rawMessage); }
@@ -365,6 +372,7 @@
         email,
         phone,
         inquiry: 'midlife-list',
+        cohort,
         message: msgParts.join('\n'),
         availability: timing,
         location,
@@ -409,7 +417,7 @@
       }
 
       // Fallback mailto
-      const subject = encodeURIComponent('Midlife List signup — Empowered Mind');
+      const subject = encodeURIComponent('Midlife Shift group inquiry — Empowered Mind');
       const lines = ['Name: ' + name, 'Email: ' + email];
       if (phone) lines.push('Phone: ' + phone);
       if (msgParts.length) { lines.push(''); lines.push(...msgParts); }
